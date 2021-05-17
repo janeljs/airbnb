@@ -15,6 +15,11 @@
 		93772DE326524E0E00EF9D3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772DE126524E0E00EF9D3C /* LaunchScreen.storyboard */; };
 		93772DEE26524E0E00EF9D3C /* airbnbAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93772DED26524E0E00EF9D3C /* airbnbAppTests.swift */; };
 		93772DF926524E0F00EF9D3C /* airbnbAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93772DF826524E0F00EF9D3C /* airbnbAppUITests.swift */; };
+		93772E3026525F9500EF9D3C /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93772E2F26525F9400EF9D3C /* WishListViewController.swift */; };
+		93772E41265260EC00EF9D3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93772E40265260EC00EF9D3C /* LoginViewController.swift */; };
+		93772E5E265263B900EF9D3C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E5D265263B900EF9D3C /* Search.storyboard */; };
+		93772E782652654C00EF9D3C /* WishList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E772652654C00EF9D3C /* WishList.storyboard */; };
+		93772E8A265265CF00EF9D3C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E88265265CF00EF9D3C /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		93772DF426524E0F00EF9D3C /* airbnbAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = airbnbAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93772DF826524E0F00EF9D3C /* airbnbAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = airbnbAppUITests.swift; sourceTree = "<group>"; };
 		93772DFA26524E0F00EF9D3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93772E2F26525F9400EF9D3C /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
+		93772E40265260EC00EF9D3C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		93772E5D265263B900EF9D3C /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		93772E772652654C00EF9D3C /* WishList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishList.storyboard; sourceTree = "<group>"; };
+		93772E89265265CF00EF9D3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = airbnbApp/Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +111,7 @@
 			children = (
 				93772DD626524E0D00EF9D3C /* AppDelegate.swift */,
 				93772DD826524E0D00EF9D3C /* SceneDelegate.swift */,
-				93772DDA26524E0D00EF9D3C /* HomeViewController.swift */,
+				93772E0C2652586700EF9D3C /* Presentation */,
 				93772DDC26524E0D00EF9D3C /* Main.storyboard */,
 				93772DDF26524E0E00EF9D3C /* Assets.xcassets */,
 				93772DE126524E0E00EF9D3C /* LaunchScreen.storyboard */,
@@ -126,6 +136,91 @@
 				93772DFA26524E0F00EF9D3C /* Info.plist */,
 			);
 			path = airbnbAppUITests;
+			sourceTree = "<group>";
+		};
+		93772E0C2652586700EF9D3C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				93772E102652586E00EF9D3C /* Search */,
+				93772E2E26525F6C00EF9D3C /* WishList */,
+				93772E3E265260CF00EF9D3C /* Login */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		93772E102652586E00EF9D3C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				93772E172652588100EF9D3C /* ViewControllers */,
+				93772E2A26525EA400EF9D3C /* UI */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		93772E172652588100EF9D3C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				93772DDA26524E0D00EF9D3C /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		93772E2A26525EA400EF9D3C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				93772E5D265263B900EF9D3C /* Search.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		93772E2E26525F6C00EF9D3C /* WishList */ = {
+			isa = PBXGroup;
+			children = (
+				93772E3426525F9A00EF9D3C /* ViewControllers */,
+				93772E3D26525FAD00EF9D3C /* UI */,
+			);
+			path = WishList;
+			sourceTree = "<group>";
+		};
+		93772E3426525F9A00EF9D3C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				93772E2F26525F9400EF9D3C /* WishListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		93772E3D26525FAD00EF9D3C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				93772E772652654C00EF9D3C /* WishList.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		93772E3E265260CF00EF9D3C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				93772E3F265260DE00EF9D3C /* ViewControllers */,
+				93772E4D2652610900EF9D3C /* UI */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		93772E3F265260DE00EF9D3C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				93772E40265260EC00EF9D3C /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		93772E4D2652610900EF9D3C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				93772E88265265CF00EF9D3C /* Login.storyboard */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +328,10 @@
 			files = (
 				93772DE326524E0E00EF9D3C /* LaunchScreen.storyboard in Resources */,
 				93772DE026524E0E00EF9D3C /* Assets.xcassets in Resources */,
+				93772E8A265265CF00EF9D3C /* Login.storyboard in Resources */,
 				93772DDE26524E0D00EF9D3C /* Main.storyboard in Resources */,
+				93772E5E265263B900EF9D3C /* Search.storyboard in Resources */,
+				93772E782652654C00EF9D3C /* WishList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +357,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				93772DDB26524E0D00EF9D3C /* HomeViewController.swift in Sources */,
+				93772E3026525F9500EF9D3C /* WishListViewController.swift in Sources */,
 				93772DD726524E0D00EF9D3C /* AppDelegate.swift in Sources */,
+				93772E41265260EC00EF9D3C /* LoginViewController.swift in Sources */,
 				93772DD926524E0D00EF9D3C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +410,14 @@
 				93772DE226524E0E00EF9D3C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		93772E88265265CF00EF9D3C /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93772E89265265CF00EF9D3C /* Base */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
