@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +16,52 @@
                     <view key="view" contentMode="scaleToFill" id="nbn-ku-EXA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="7Fx-UI-qFL" customClass="RoomSearchBar" customModule="airbnbApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LXf-4g-9Lv"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="48z-vI-qf5">
+                                <rect key="frame" x="0.0" y="138" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t8f-hk-Kf8">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Rxu-rT-Del">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PLl-SA-KkQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="XN1-Zq-GoM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XN1-Zq-GoM" firstAttribute="trailing" secondItem="7Fx-UI-qFL" secondAttribute="trailing" id="8h4-Me-uKG"/>
+                            <constraint firstItem="XN1-Zq-GoM" firstAttribute="trailing" secondItem="48z-vI-qf5" secondAttribute="trailing" id="SOS-FL-3Tr"/>
+                            <constraint firstItem="48z-vI-qf5" firstAttribute="leading" secondItem="XN1-Zq-GoM" secondAttribute="leading" id="T5R-lD-bmu"/>
+                            <constraint firstItem="XN1-Zq-GoM" firstAttribute="bottom" secondItem="48z-vI-qf5" secondAttribute="bottom" id="X1K-IM-uGN"/>
+                            <constraint firstItem="7Fx-UI-qFL" firstAttribute="leading" secondItem="nbn-ku-EXA" secondAttribute="leading" id="h5f-cO-1zo"/>
+                            <constraint firstItem="48z-vI-qf5" firstAttribute="top" secondItem="7Fx-UI-qFL" secondAttribute="bottom" id="uFb-qE-weU"/>
+                            <constraint firstItem="7Fx-UI-qFL" firstAttribute="top" secondItem="XN1-Zq-GoM" secondAttribute="top" id="zhT-4T-8Nc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WgS-40-0VP"/>
+                    <connections>
+                        <outlet property="collectionView" destination="48z-vI-qf5" id="Oog-9a-DLD"/>
+                        <outlet property="roomSearchBar" destination="7Fx-UI-qFL" id="0w8-qK-xqo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PN9-bV-Pv6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

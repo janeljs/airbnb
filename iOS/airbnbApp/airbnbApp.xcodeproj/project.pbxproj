@@ -20,6 +20,7 @@
 		93772E5E265263B900EF9D3C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E5D265263B900EF9D3C /* Search.storyboard */; };
 		93772E782652654C00EF9D3C /* WishList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E772652654C00EF9D3C /* WishList.storyboard */; };
 		93772E8A265265CF00EF9D3C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93772E88265265CF00EF9D3C /* Login.storyboard */; };
+		93772EA22652A51600EF9D3C /* RoomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93772EA12652A51600EF9D3C /* RoomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		93772E5D265263B900EF9D3C /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		93772E772652654C00EF9D3C /* WishList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishList.storyboard; sourceTree = "<group>"; };
 		93772E89265265CF00EF9D3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = airbnbApp/Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		93772EA12652A51600EF9D3C /* RoomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				93772E5D265263B900EF9D3C /* Search.storyboard */,
+				93772EA12652A51600EF9D3C /* RoomSearchBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				93772E3026525F9500EF9D3C /* WishListViewController.swift in Sources */,
 				93772DD726524E0D00EF9D3C /* AppDelegate.swift in Sources */,
 				93772E41265260EC00EF9D3C /* LoginViewController.swift in Sources */,
+				93772EA22652A51600EF9D3C /* RoomSearchBar.swift in Sources */,
 				93772DD926524E0D00EF9D3C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
