@@ -1,5 +1,9 @@
 package airbnb.domain;
 
+import com.querydsl.core.annotations.QueryProjection;
+import lombok.Getter;
+
+@Getter
 public enum PropertyType {
     HOUSE("주택"),
     APARTMENT("아파트"),
@@ -13,9 +17,5 @@ public enum PropertyType {
 
     PropertyType(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 }

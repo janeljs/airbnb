@@ -1,5 +1,8 @@
 package airbnb.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Time {
     HOUR("시간"), MINUTE("분");
 
@@ -7,9 +10,5 @@ public enum Time {
 
     Time(String unit) {
         this.name = unit;
-    }
-
-    public String getName() {
-        return name;
     }
 }

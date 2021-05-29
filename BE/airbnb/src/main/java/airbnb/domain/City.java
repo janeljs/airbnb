@@ -1,5 +1,6 @@
 package airbnb.domain;
 
+import airbnb.response.CityResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,7 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    protected String name;
     private double driveTime;
     private String image;
 
@@ -34,5 +35,13 @@ public class City {
             return df.format(driveTime) + HOUR.getName();
         }
         return df.format(driveTime) + MINUTE.getName();
+    }
+
+    public static CityResponse of(City city) {
+        return CityResponse.builder()
+                .name(city.name)
+                .driveTime(city.getProcessedDriveTime())
+                .image(city.image)
+                .build();
     }
 }

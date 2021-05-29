@@ -1,8 +1,11 @@
 package airbnb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -12,22 +15,23 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @Builder
 public class Booking {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     @JoinColumn
     private User user;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     @JoinColumn
     private Room room;
 
-    int adults;
-    int children;
-    int infants;
+    @Embedded
+    private Guest guest;
 
-    int pricePerNight;
-    String checkInTime;
-    String checkOutTime;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
 }

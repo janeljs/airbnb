@@ -1,12 +1,10 @@
 package airbnb.domain;
 
-import airbnb.domain.Booking;
-import airbnb.domain.Wish;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -16,11 +14,11 @@ public class User {
     @Column
     private Long id;
 
-    private String userName;
-    private String password;
-    private String name;
     private String email;
+    private String name;
+    private String password;
     private String profileImage;
+    private String userName;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
