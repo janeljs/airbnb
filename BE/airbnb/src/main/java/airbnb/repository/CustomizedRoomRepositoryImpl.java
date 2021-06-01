@@ -5,6 +5,7 @@ import airbnb.request.SearchRequest;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class CustomizedRoomRepositoryImpl implements CustomizedRoomRepository {
     public List<Room> findRoomsFilteredBy(SearchRequest searchRequest) {
         return queryFactory
                 .selectFrom(room)
-                .rightJoin(booking).on(room.id.eq(booking.id))
+                .leftJoin(booking).on(room.id.eq(booking.id))
                 .where(placeIdEquals(searchRequest.getPlaceId()),
                         dateNotBetween(searchRequest.getCheckIn(), searchRequest.getCheckOut()),
                         priceBetween(searchRequest.getPriceMin(), searchRequest.getPriceMax()),

@@ -1,19 +1,10 @@
 package airbnb.domain;
 
-import airbnb.request.BookingRequest;
-import airbnb.response.BookingResponse;
 import airbnb.response.RoomDetailPageResponse;
 import airbnb.response.RoomResponse;
 import lombok.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,17 +84,6 @@ public class Room {
                 .averageRating(room.averageRating)
                 .host(room.host)
                 .pricePerNight(room.pricePerNight)
-                .build();
-    }
-
-    public static Booking createBooking(User user, Room room, BookingRequest reservationInfo) {
-        return Booking.builder()
-                .user(user)
-                .room(room)
-                .guest(BookingRequest.createGuest(reservationInfo))
-                .checkIn(LocalDateTime.of(LocalDate.parse(reservationInfo.getCheckIn()), room.rule.getCheckInTime()))
-                .checkOut(LocalDateTime.of(LocalDate.parse(reservationInfo.getCheckIn()), room.rule.getCheckOutTime()))
-                .totalPrice(reservationInfo.getTotalPrice())
                 .build();
     }
 }

@@ -1,13 +1,11 @@
 package airbnb.domain;
 
-import airbnb.response.BookingResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -22,7 +20,7 @@ public class Booking {
     private Long id;
 
     @JsonIgnore
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn
     private User user;
 
@@ -36,19 +34,4 @@ public class Booking {
 
     private LocalDate checkIn;
     private LocalDate checkOut;
-
-    private Integer totalPrice;
-
-    public static BookingResponse createBookingResponse(Booking booking) {
-        return BookingResponse.builder()
-                .name(booking.room.getName())
-                .roomImages(booking.room.getImages().stream().map(Image::getImage).collect(Collectors.toList()))
-                .place(booking.room.getLocation().getPlaceId())
-                .host(booking.room.getHost().getName())
-                .checkIn(LocalDateTime.of(booking.checkIn, booking.room.getRule().getCheckInTime()))
-                .checkOut(LocalDateTime.of(booking.checkOut, booking.room.getRule().getCheckOutTime()))
-                .numberOfGuests(booking.guest.numberOfGuests())
-                .totalPrice(booking.totalPrice)
-                .build();
-    }
 }
