@@ -1,13 +1,12 @@
 package airbnb.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor
+@Builder
 @Getter
 public class Guest {
     private Integer adults;
