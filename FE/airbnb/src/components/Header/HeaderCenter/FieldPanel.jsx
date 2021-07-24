@@ -19,7 +19,6 @@ const FieldPanel = () => {
   return (
     <FieldPanelStyle
       {...{
-        headerState,
         guestButton,
         nearbyButton,
         checkInButton,
@@ -44,7 +43,7 @@ const FieldPanelStyle = styled.div`
   background-color: #fff;
   transition: all ease 0.4s;
 
-  ${({ headerState }) =>
+  /* ${({ headerState }) =>
     headerState
       ? `
     visibility: hidden;
@@ -54,7 +53,7 @@ const FieldPanelStyle = styled.div`
     `
       : `
     visibility: visible;
-    opacity: 1;`}
+    opacity: 1;`} */
 
   ${({ guestButton, checkInButton, checkOutButton, nearbyButton }) =>
     (guestButton || checkInButton || checkOutButton || nearbyButton) &&

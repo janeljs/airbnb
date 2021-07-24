@@ -56,7 +56,7 @@ const Fieldset = () => {
   };
 
   return (
-    <FieldsetStyle {...{ headerState }}>
+    <FieldsetStyle>
       <FieldsetWrapper role="tablist" aria-label="무엇을 찾고 계신가요?">
         <FieldsetLabel
           id={isSelected.stays.id}
@@ -88,14 +88,14 @@ const FieldsetStyle = styled.fieldset`
   margin: 0;
   padding: 0;
 
-  ${({ headerState }) =>
+  /* ${({ headerState }) =>
     headerState
       ? `
     visibility: hidden;
     opacity: 0;`
       : `
     visibility: visible;
-    opacity: 1;`}
+    opacity: 1;`} */
 `;
 
 const FieldsetWrapper = styled.div`

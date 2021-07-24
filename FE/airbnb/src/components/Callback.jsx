@@ -21,8 +21,6 @@ const Callback = ({ location, history }) => {
 
     getToken();
 
-    console.log('callback');
-
     const homePage = '/';
     window.history.pushState(null, null, homePage);
   }, [location, history]);

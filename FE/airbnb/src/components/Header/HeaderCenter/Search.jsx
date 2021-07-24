@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { GITHUB_LOGIN, SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
@@ -12,21 +13,17 @@ import {
   searchData,
   searchTextState,
   nearbyButtonState,
-  checkInField,
-  checkOutField,
 } from '../../../Recoil/HeaderFieldsetState';
 
 const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
   const [reservation, setReservation] = useRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
-  const [search, setSearch] = useRecoilState(searchData);
+  const search = useRecoilValue(searchData);
   const setNearbyButton = useSetRecoilState(nearbyButtonState);
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
   const setGuestButton = useSetRecoilState(guestButtonState);
   const setGuestPopup = useSetRecoilState(guestPopupState);
-  const checkIn = useRecoilValue(checkInField);
-  const checkOut = useRecoilValue(checkOutField);
 
   const handleClickSearchButton = (e) => {
     e.stopPropagation();
@@ -40,18 +37,14 @@ const Search = () => {
     }
     setReservation(true);
     setHeaderState(true);
-    setSearch({
-      location: search.location,
-      checkIn: checkIn,
-      checkOut: checkOut,
-      guest: {
-        adult: 0,
-        child: 0,
-        infant: 0,
-      },
-    });
+
     localStorage.setItem('search', JSON.stringify(search));
   };
+
+  const count = useRef(0);
+  // console.log(count.current++);
+  // console.log(search);
+  // console.log(search.guest);
 
   return (
     <>

@@ -27,8 +27,9 @@ const NearbyPopup = () => {
       return CITY_LIST[idx];
     };
     const city = getCity();
-    console.log(city);
-    nearbyValue === ''
+    // navigator.geolocation.getCurrentPosition(console.log);
+    console.log('city', city, 'nearby', nearbyValue);
+    !nearbyValue
       ? setUserSearchData({
           ...userSearchData,
           location: city,

@@ -128,7 +128,7 @@ const PlusButton = ({ count, id }) => {
     // console.log(search);
     checkCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count]);
+  }, [count, search.guest.adult, search.guest.child, search.guest.infant]);
 
   return (
     <CounterButtonStyle

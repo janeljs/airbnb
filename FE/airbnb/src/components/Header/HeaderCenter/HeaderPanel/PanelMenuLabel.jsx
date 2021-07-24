@@ -1,27 +1,41 @@
+import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import {
   nearbyButtonState,
   nearbyField,
+  searchData,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelMenuLabel = ({ name, placeholder }) => {
   const nearbyButton = useRecoilValue(nearbyButtonState);
   const [nearbyValue, setNearbyValue] = useRecoilState(nearbyField);
+  const [search, setSearch] = useRecoilState(searchData);
 
   const handleOnChange = (e) => {
     setNearbyValue(e.target.value);
   };
 
+  useEffect(() => {
+    setSearch({
+      ...search,
+      location: nearbyValue,
+    });
+  }, [nearbyValue]);
+
   return (
     <PanelMenuLabelStyle {...{ nearbyButton }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{name}</PanelMenuDiv>
-        <PanelMenuInput
-          placeholder={placeholder}
-          onChange={handleOnChange}
-          value={nearbyValue}
-        />
+        {search.location && !nearbyButton ? (
+          <div>{search.location}</div>
+        ) : (
+          <PanelMenuInput
+            placeholder={placeholder}
+            onChange={handleOnChange}
+            value={nearbyValue}
+          />
+        )}
       </PanelMenuLabelWrapper>
     </PanelMenuLabelStyle>
   );
