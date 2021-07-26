@@ -4,6 +4,7 @@ import useFetch from '../../../customHooks/useFetch';
 import { v4 as uuidv4 } from 'uuid';
 import CityInfo from './CityInfo/CityInfo';
 import { URL_HOME } from '../../../const';
+import Loader from '../../Loader';
 
 const MainSuburbSectionContent = () => {
   const data = useFetch(URL_HOME, []);
@@ -13,7 +14,7 @@ const MainSuburbSectionContent = () => {
     setNearby(data.nearbyDestinations);
   }, [data.nearbyDestinations]);
 
-  if (!nearby) return <div>no data</div>;
+  if (!nearby) return <Loader />;
   return (
     <MainSuburbSectionContentStyle>
       {nearby.map((city) => (
