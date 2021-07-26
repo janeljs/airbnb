@@ -18,6 +18,8 @@ const RegisterLogin = () => {
 
   const handleClickLoginButton = (e) => {
     e.stopPropagation();
+    if (isLogIn) return;
+
     if (gitHubLoginState) {
       return (window.location.href = authUri);
     }
@@ -27,29 +29,29 @@ const RegisterLogin = () => {
   useEffect(() => {
     isLogIn ? setLogInText(decodedToken.githubName) : setLogInText(LOGIN);
   }, [isLogIn]);
+
   return (
-    <>
-      {gitHubLoginState ? (
-        <RegisterLoginStyle
-          {...{ gitHubLoginState }}
-          onClick={handleClickLoginButton}
-        >
-          <GitHubLoginStyle>
-            <div>
-              <GitHubIcon />
-            </div>
-            <div>{`Sign in with GitHub`}</div>
-          </GitHubLoginStyle>
-        </RegisterLoginStyle>
+    <RegisterLoginStyle
+      {...{ isLogIn, gitHubLoginState }}
+      onClick={handleClickLoginButton}
+    >
+      {isLogIn ? (
+        <LoginStyle>{logInText}</LoginStyle>
       ) : (
-        <RegisterLoginStyle
-          {...{ gitHubLoginState, isLogIn }}
-          onClick={handleClickLoginButton}
-        >
-          <LoginStyle>{logInText}</LoginStyle>
-        </RegisterLoginStyle>
+        <>
+          {gitHubLoginState ? (
+            <GitHubLoginStyle>
+              <div>
+                <GitHubIcon />
+              </div>
+              <div>{`Sign in with GitHub`}</div>
+            </GitHubLoginStyle>
+          ) : (
+            <LoginStyle>{LOGIN}</LoginStyle>
+          )}
+        </>
       )}
-    </>
+    </RegisterLoginStyle>
   );
 };
 
@@ -81,7 +83,7 @@ const RegisterLoginStyle = styled.div`
     background-color: #f7f7f7;
   }
 
-  ${({ gitHubLoginState, isLogIn }) =>
+  ${({ isLogIn, gitHubLoginState }) =>
     !isLogIn &&
     gitHubLoginState &&
     `
