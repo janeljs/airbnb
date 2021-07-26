@@ -1,31 +1,41 @@
 import { useEffect } from 'react';
 import qs from 'qs';
-import { useRecoilState } from 'recoil';
+import { URL as U } from '../const';
+import { useLocation } from 'react-router';
+import Loader from '../components/Loader';
+import { useSetRecoilState } from 'recoil';
 import { isLoggedIn } from '../Recoil/LogInState';
 
-const Callback = ({ location, history }) => {
-  const [isLogIn, setIsLogIn] = useRecoilState(isLoggedIn);
+const Callback = () => {
+  const location = useLocation();
+  const setIsLogIn = useSetRecoilState(isLoggedIn);
 
   useEffect(() => {
-    if (isLogIn) return;
     const getToken = async () => {
-      const { jwt, profile_url } = qs.parse(window.location.search, {
+      const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       });
-      if (!jwt) return;
 
-      localStorage.setItem('jwt', jwt);
-      localStorage.setItem('profile_url', profile_url);
-      setIsLogIn(true);
+      try {
+        const response = await fetch(U.BASE_URL + '/github/login?code=' + code);
+        const data = await response.json();
+
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('avatarUrl', data.avatarUrl);
+          setIsLogIn(true);
+        } else {
+          console.log('로그인 실패: 토큰 겟 실패');
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     getToken();
+  }, []);
 
-    const homePage = '/';
-    window.history.pushState(null, null, homePage);
-  }, [location, history]);
-
-  return <div>Callback</div>;
+  return <Loader />;
 };
 
 export default Callback;

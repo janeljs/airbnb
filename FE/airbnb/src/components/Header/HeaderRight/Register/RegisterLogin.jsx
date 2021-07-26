@@ -1,28 +1,32 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { GITHUB_LOGIN, LOGIN } from '../../../../const';
+import { LOGIN } from '../../../../const';
 import { gitHubLogin } from '../../../../Recoil/HeaderFieldsetState';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { isLoggedIn, userData } from '../../../../Recoil/LogInState';
+import { isLoggedIn } from '../../../../Recoil/LogInState';
 import { useEffect, useState } from 'react';
+import { URL as U } from '../../../../const';
+import jwt_decode from 'jwt-decode';
 
 const RegisterLogin = () => {
   const [gitHubLoginState, setGitHubLoginState] = useRecoilState(gitHubLogin);
   const isLogIn = useRecoilValue(isLoggedIn);
-  const user = useRecoilValue(userData);
   const [logInText, setLogInText] = useState(LOGIN);
+  const authUri = `${U.AUTH}${process.env.REACT_APP_GITHUB_CLIENT_ID}`;
+  const token = localStorage.getItem('token');
+  const decodedToken = token && jwt_decode(token);
 
   const handleClickLoginButton = (e) => {
     e.stopPropagation();
     if (gitHubLoginState) {
-      return (window.location.href = `${GITHUB_LOGIN}`);
+      return (window.location.href = authUri);
     }
     setGitHubLoginState(true);
   };
 
   useEffect(() => {
-    isLogIn && setLogInText(user.id);
-  }, [isLogIn, user.id]);
+    isLogIn ? setLogInText(decodedToken.githubName) : setLogInText(LOGIN);
+  }, [isLogIn]);
   return (
     <>
       {gitHubLoginState ? (

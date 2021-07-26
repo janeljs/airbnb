@@ -1,14 +1,23 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { REGIST, LOGOUT } from '../../../../const';
 import { isLoggedIn } from '../../../../Recoil/LogInState';
 
 const RegisterForm = () => {
-  const isLogIn = useRecoilValue(isLoggedIn);
-
+  const [isLogIn, setIsLogIn] = useRecoilState(isLoggedIn);
+  const handleClickLogOutButton = (e) => {
+    if (e.target.id !== LOGOUT) return;
+    localStorage.removeItem('token');
+    localStorage.removeItem('avatarUrl');
+    setIsLogIn(false);
+  };
   return (
-    <RegisterFormStyle>
-      <div>{isLogIn ? `${LOGOUT}` : `${REGIST}`}</div>
+    <RegisterFormStyle onClick={handleClickLogOutButton}>
+      {isLogIn ? (
+        <div id={LOGOUT}>{LOGOUT}</div>
+      ) : (
+        <div id={REGIST}>{REGIST}</div>
+      )}
     </RegisterFormStyle>
   );
 };

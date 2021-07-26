@@ -10,18 +10,21 @@ import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
 import { roomData } from '../../shared/mock';
+import { useLocation } from 'react-router-dom';
 
-const Reservation = ({ location, match, history }) => {
+const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
+  const searchData = JSON.parse(localStorage.getItem('search'));
+  console.log(searchData);
 
   const getPlaceId = (city) => {
     const idx = CITY_LIST.indexOf(city);
     const id = PLACE_ID[idx];
     return id;
   };
-  const locationData = getPlaceId(location.state.data.location);
+  const locationData = getPlaceId(searchData.location);
   const placeId = locationData && `placeId=${locationData}`;
   // const rooms = useFetch(
   //   `http://travel.airbnb.kro.kr/api/ios/rooms?${placeId}`,

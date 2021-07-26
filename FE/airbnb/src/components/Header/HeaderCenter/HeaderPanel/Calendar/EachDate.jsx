@@ -17,14 +17,16 @@ import {
 } from '../../../../../Recoil/HeaderFieldsetState';
 import { getDate } from '../../../../../util';
 import { setState } from '../../../../../util.ts';
+import { calendarMonthTriggerState } from '../../../../../Recoil/CalendarState';
 
 const EachDate = ({ eachMonth, dateState }) => {
   const [selected, setSelected] = useState(false);
-  const [isPast, setIsPast] = useState(true);
+  const [isRange, setIsRange] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const [disable, setDisable] = useState(false);
   const [checkInDate, setCheckInDate] = useRecoilState(checkInField);
   const [checkOutDate, setCheckOutDate] = useRecoilState(checkOutField);
-  const [dateBox, setDateBox] = useState(dateState);
+  const [hoverBox, setHoverBox] = useState(null);
   const now = useRecoilValue(current);
   const setCheckInButton = useSetRecoilState(checkInButtonState);
   const [checkOutButton, setCheckOutButton] =
@@ -32,15 +34,17 @@ const EachDate = ({ eachMonth, dateState }) => {
   const setCheckOutDelete = useSetRecoilState(checkOutDeleteButton);
   const [search, setSearch] = useRecoilState(searchData);
 
-  const { date, range, hover } = dateBox;
-
   // 컴포넌트 날짜
-  const currentComponentDate = new Date(eachMonth.year, eachMonth.month, date);
+  const currentComponentDate = new Date(
+    eachMonth.year,
+    eachMonth.month,
+    dateState.date
+  );
 
   const currentDate = {
     year: eachMonth.year,
     month: eachMonth.month,
-    date: date,
+    date: dateState.date,
   };
 
   // 선택된 체크인 날짜
@@ -141,14 +145,14 @@ const EachDate = ({ eachMonth, dateState }) => {
     if (
       selectedCheckInDate.year === eachMonth.year &&
       selectedCheckInDate.month === eachMonth.month &&
-      selectedCheckInDate.date === date
+      selectedCheckInDate.date === dateState.date
     ) {
       return setSelected(true);
     }
     if (
       selectedCheckOutDate.year === eachMonth.year &&
       selectedCheckOutDate.month === eachMonth.month &&
-      selectedCheckOutDate.date === date
+      selectedCheckOutDate.date === dateState.date
     ) {
       return setSelected(true);
     }
@@ -156,33 +160,32 @@ const EachDate = ({ eachMonth, dateState }) => {
   };
 
   const handleOnMouseEnter = () => {
-    // setEachMonth({
-    //   ...eachMonth,
-    //   dateList: eachMonth.dateList.map((date) => {
-    //     const eachDate = new Date(eachMonth.year, eachMonth.month, date.date);
-    //     console.log(date);
-    //     return !isPast && date.date === dateState.date
-    //       ? { ...date, hover: true }
-    //       : date;
-    //   }),
-    // });
+    setIsHover(true);
 
-    setDateBox({ ...dateBox, hover: true });
+    // 체크인 데이터가 없으면 리턴
+    // 체크인 데이터가 있으면
+    // 체크아웃 데이터를 임시로 저장
+
+    setHoverBox(getDate(currentDate));
   };
 
   const handleOnMouseLeave = () => {
-    // setEachMonth({
-    //   ...eachMonth,
-    //   dateList: eachMonth.dateList.map(
-    //     (date) => (date = { ...date, hover: false, range: false })
-    //   ),
-    // });
-    setDateBox({ ...dateBox, hover: false });
+    // setIsRange(
+    //   selectedCheckIn < currentComponentDate &&
+    //     selectedCheckOut > currentComponentDate
+    // );
+    setIsHover(false);
   };
 
   useEffect(() => {
-    setIsPast(todayDate > currentComponentDate);
-    setDisable(todayDate > currentComponentDate || date === null);
+    setIsRange(
+      selectedCheckIn < currentComponentDate &&
+        selectedCheckOut > currentComponentDate
+    );
+  }, [isHover]);
+
+  useEffect(() => {
+    setDisable(todayDate > currentComponentDate || dateState.date === null);
     checkSelected();
     setSearch({
       ...search,
@@ -193,16 +196,16 @@ const EachDate = ({ eachMonth, dateState }) => {
   }, [checkInDate, checkOutDate]);
 
   return (
-    <DateStyle {...{ checkInDate, checkOutDate, selected, range }}>
+    <DateStyle {...{ checkInDate, checkOutDate, selected }}>
       <DateBox
-        {...{ hover, selected }}
+        {...{ selected, isRange }}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
         onMouseDown={handleClickDate}
         disabled={disable}
       >
-        <DateBoxDiv {...{ isPast }}>
-          <DateNum>{date}</DateNum>
+        <DateBoxDiv {...{ disable }}>
+          <DateNum>{dateState.date}</DateNum>
         </DateBoxDiv>
       </DateBox>
     </DateStyle>
@@ -231,23 +234,6 @@ const DateStyle = styled.div`
     border-bottom-left-radius: 50%;
     background: rgb(247, 247, 247);
   `};
-  ${({ checkInDate, range }) =>
-    range &&
-    checkInDate.state &&
-    `
-      border-radius: 0;
-      background: rgb(247, 247, 247);
-  `};
-
-  /* ${({ checkOutDate, selected, isRange }) =>
-    selected &&
-    checkOutDate.state &&
-    // isRange &&
-    `
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    background: rgb(247, 247, 247);
-  `}; */
 `;
 
 const DateBox = styled.button`
@@ -260,14 +246,28 @@ const DateBox = styled.button`
 
   :disabled {
     cursor: default;
+
+    :hover {
+      background: #fff;
+      border: none;
+    }
   }
 
-  ${({ hover }) =>
-    hover &&
-    `
+  :hover {
     border: 1px solid #222;
+    background: #222;
+    color: #fff;
     border-radius: 50%;
+  }
+
+  ${({ isRange }) =>
+    isRange &&
+    `
+    
+    background:rgb(247, 247, 247);
+    
   `}
+
   ${({ selected }) =>
     selected &&
     `
@@ -285,8 +285,8 @@ const DateBoxDiv = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  ${({ isPast }) =>
-    isPast &&
+  ${({ disable }) =>
+    disable &&
     `
     color: rgb(72, 72, 72);
   opacity: 0.25;`}

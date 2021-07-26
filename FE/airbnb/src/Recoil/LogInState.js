@@ -12,3 +12,8 @@ export const userData = atom({
     image: null,
   },
 });
+
+export const logInTriggerState = atom({
+  key: 'logInTriggerState',
+  default: false,
+});

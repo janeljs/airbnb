@@ -233,7 +233,7 @@ const FieldPanelMenu = () => {
           {checkInDelete && <CheckInDeleteButton />}
         </CheckInPanelButtonStyle>
         <CalendarPopupStyle {...{ calendarState }} ref={calendar}>
-          <CalendarPopup />
+          {calendarState && <CalendarPopup />}
         </CalendarPopupStyle>
         <FieldPanelMenuSeparator />
         <CheckOutPanelButtonStyle ref={checkOut}>
