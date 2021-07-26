@@ -2,25 +2,33 @@ import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from '../components/style/GlobalStyles';
 import Footer from '../components/Footer/Footer';
 import theme from '../components/style/theme';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { Aside, Home, Main, Reservation } from '../pages';
 import Callback from '../components/Callback';
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { isLoggedIn } from '../Recoil/LogInState';
 
 function App() {
-  const isLogIn = useRecoilValue(isLoggedIn);
+  const token = localStorage.getItem('token');
+  const setIsLogIn = useSetRecoilState(isLoggedIn);
+
+  useEffect(() => {
+    token && setIsLogIn(true);
+  }, []);
 
   return (
     <ThemeProvider {...{ theme }}>
       <GlobalStyles />
       <AppStyle className="App">
         <UpperDiv>
+          <Route exact path="/callback" component={Callback} />
           <Route exact path="/" component={Aside} />
           <Home />
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
-          {!isLogIn && <Route exact path="/" component={Callback} />}
+          {/* {!isLogIn && <Route exact path="/login" component={Callback} />} */}
+          <Redirect from="*" to="/" />
         </UpperDiv>
         <BeforeAfterDiv>
           <Footer />

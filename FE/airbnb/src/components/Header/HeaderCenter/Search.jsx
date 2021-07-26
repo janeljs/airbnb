@@ -39,6 +39,7 @@ const Search = () => {
     setHeaderState(true);
 
     localStorage.setItem('search', JSON.stringify(search));
+    window.location.href = '/reservation';
   };
 
   const count = useRef(0);
@@ -47,51 +48,21 @@ const Search = () => {
   // console.log(search.guest);
 
   return (
-    <>
-      {reservation ? (
-        <Redirect
-          to={{
-            pathname: '/reservation',
-            search: '?',
-            state: { data: search },
-          }}
-        >
-          <SearchStyle onClick={handleClickSearchButton}>
-            <SearchButton {...{ searchText }}>
-              <UpperSpan>
-                <InnerSpan />
-              </UpperSpan>
-              <BottomSpan>
-                <SearchButtonBox>
-                  <SearchLogoBox>
-                    <SearchLogo />
-                  </SearchLogoBox>
-                  <SearchTextBox {...{ searchText }}>
-                    {SEARCH_TEXT}
-                  </SearchTextBox>
-                </SearchButtonBox>
-              </BottomSpan>
-            </SearchButton>
-          </SearchStyle>
-        </Redirect>
-      ) : (
-        <SearchStyle onClick={handleClickSearchButton}>
-          <SearchButton {...{ searchText }}>
-            <UpperSpan>
-              <InnerSpan />
-            </UpperSpan>
-            <BottomSpan>
-              <SearchButtonBox>
-                <SearchLogoBox>
-                  <SearchLogo />
-                </SearchLogoBox>
-                <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
-              </SearchButtonBox>
-            </BottomSpan>
-          </SearchButton>
-        </SearchStyle>
-      )}
-    </>
+    <SearchStyle onClick={handleClickSearchButton}>
+      <SearchButton {...{ searchText }}>
+        <UpperSpan>
+          <InnerSpan />
+        </UpperSpan>
+        <BottomSpan>
+          <SearchButtonBox>
+            <SearchLogoBox>
+              <SearchLogo />
+            </SearchLogoBox>
+            <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
+          </SearchButtonBox>
+        </BottomSpan>
+      </SearchButton>
+    </SearchStyle>
   );
 };
 

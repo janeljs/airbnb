@@ -1,14 +1,15 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { userData } from '../Recoil/LogInState';
+import { isLoggedIn } from '../Recoil/LogInState';
 
 const UserLogo = () => {
-  const user = useRecoilValue(userData);
+  const avatar = localStorage.getItem('avatarUrl');
+  const isLogIn = useRecoilValue(isLoggedIn);
 
   return (
     <UserLogoStyle>
-      {user.image ? (
-        <img src={user.image} alt={user.image} />
+      {isLogIn ? (
+        <img src={avatar} alt={avatar} />
       ) : (
         <svg
           viewBox="0 0 32 32"

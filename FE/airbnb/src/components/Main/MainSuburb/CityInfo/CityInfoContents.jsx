@@ -3,11 +3,11 @@ import CityInfoImg from './CityInfoImg';
 import CityInfoText from './CityInfoText';
 
 const CityInfoContents = ({ city }) => {
-  const { name, hourDrive, image } = city;
+  const { name, driveTime, image } = city;
   return (
     <CityInfoContentsAnchor>
       <CityInfoImg {...{ image }} />
-      <CityInfoText {...{ name, hourDrive }} />
+      <CityInfoText {...{ name, driveTime }} />
     </CityInfoContentsAnchor>
   );
 };
