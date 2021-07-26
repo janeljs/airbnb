@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const CityInfoText = ({ name, hourDrive }) => {
+const CityInfoText = ({ name, driveTime }) => {
   return (
     <CityInfoTextSpan>
       <CityNameSpan>{name}</CityNameSpan>
-      <CityDistanceSpan>차로 {hourDrive}시간 거리</CityDistanceSpan>
+      <CityDistanceSpan>차로 {driveTime} 거리</CityDistanceSpan>
     </CityInfoTextSpan>
   );
 };

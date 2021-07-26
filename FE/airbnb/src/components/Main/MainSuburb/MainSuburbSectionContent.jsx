@@ -15,6 +15,7 @@ const MainSuburbSectionContent = () => {
   }, [data.nearbyDestinations]);
 
   if (!nearby) return <Loader />;
+
   return (
     <MainSuburbSectionContentStyle>
       {nearby.map((city) => (
