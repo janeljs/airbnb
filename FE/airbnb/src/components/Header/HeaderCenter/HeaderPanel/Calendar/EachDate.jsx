@@ -182,6 +182,7 @@ const EachDate = ({ eachMonth, dateState }) => {
       selectedCheckIn < currentComponentDate &&
         selectedCheckOut > currentComponentDate
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHover]);
 
   useEffect(() => {

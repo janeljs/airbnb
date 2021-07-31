@@ -1,8 +1,25 @@
 import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { currentPositionState } from '../../../Recoil/ReservationState';
 
-/*global kakao*/
+const kakao = window.kakao;
+console.log(kakao);
 
 const KakaoMap = () => {
+  const [position, setPosition] = useRecoilState(currentPositionState);
+
+  useEffect(() => {
+    const getCurrentPosition = (pos: any) => {
+      const position = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      };
+      setPosition(position);
+    };
+
+    navigator.geolocation.getCurrentPosition((pos) => getCurrentPosition(pos));
+  }, []);
+
   useEffect(() => {
     var container = document.getElementById('map');
     var options = {

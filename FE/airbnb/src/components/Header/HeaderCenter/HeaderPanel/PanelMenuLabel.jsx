@@ -21,6 +21,7 @@ const PanelMenuLabel = ({ name, placeholder }) => {
       ...search,
       location: nearbyValue,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nearbyValue]);
 
   return (

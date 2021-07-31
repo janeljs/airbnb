@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import TypeCityContent from './TypeCityContent';
-import TypeCityTitle from './TypeCityTitle';
+// import TypeCityTitle from './TypeCityTitle';
 
-const TypeCity = ({ city, cityName, id }) => {
+const TypeCity = ({ room, id }) => {
   return (
     <TypeCityStyle>
       <TypeCityWrapper>
         <TypeCityContainer>
           <TypeCityBox>
-            {cityName && <TypeCityTitle {...{ cityName }} />}
-            <TypeCityContent {...{ city, id }} />
+            {/* {cityName && <TypeCityTitle {...{ cityName }} />} */}
+            <TypeCityContent {...{ room, id }} />
           </TypeCityBox>
         </TypeCityContainer>
       </TypeCityWrapper>

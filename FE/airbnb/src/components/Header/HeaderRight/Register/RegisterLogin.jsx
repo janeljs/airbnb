@@ -28,6 +28,7 @@ const RegisterLogin = () => {
 
   useEffect(() => {
     isLogIn ? setLogInText(decodedToken.githubName) : setLogInText(LOGIN);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogIn]);
 
   return (

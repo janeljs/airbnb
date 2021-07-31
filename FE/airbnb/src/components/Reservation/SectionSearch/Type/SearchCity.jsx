@@ -5,7 +5,7 @@ import { citySectionState } from '../../../../Recoil/ReservationState';
 import TypeContentCity from './TypeContentCity';
 import TypeHeader from './TypeHeader';
 
-const SearchCity = ({ search }) => {
+const SearchCity = () => {
   const [citySection, setCitySection] = useRecoilState(citySectionState);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const SearchCity = ({ search }) => {
 
   if (!citySection) return null;
   return (
-    <div>
-      <TypeHeader {...{ search }} />
+    <>
+      <TypeHeader />
       <TypeContentCity />
-    </div>
+    </>
   );
 };
 

@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 import CityCardLong from '../CityCard/CityCardLong';
 
-const TypeCityContent = ({ city, id }) => {
+const TypeCityContent = ({ room, id }) => {
   return (
     <TypeCityContentStyle>
       <TypeCityContentWrapper>
-        <TypeCityUpperLine>
-          <div></div>
-        </TypeCityUpperLine>
-        <CityCardLong {...{ city, id }} />
-        <TypeCityBottomLine>
-          <div></div>
-        </TypeCityBottomLine>
+        <TypeCityUpperLine />
+        <CityCardLong {...{ room, id }} />
+        <TypeCityBottomLine />
       </TypeCityContentWrapper>
     </TypeCityContentStyle>
   );
@@ -49,20 +45,16 @@ const TypeCityUpperLine = styled.div`
   margin-top: 12px;
   margin-bottom: 24px;
 
-  div {
-    border-bottom-width: var(--border-rule-border-width, 1px);
-    border-bottom-color: var(--color-divider, #ebebeb);
-    border-bottom: 1px solid rgb(235, 235, 235);
-  }
+  border-bottom-width: var(--border-rule-border-width, 1px);
+  border-bottom-color: var(--color-divider, #ebebeb);
+  border-bottom: 1px solid rgb(235, 235, 235);
 `;
 
 const TypeCityBottomLine = styled.div`
   margin-top: 24px;
   margin-bottom: 4px;
 
-  div {
-    border-bottom-width: var(--border-rule-border-width, 1px);
-    border-bottom-color: var(--color-divider, #ebebeb);
-    border-bottom: 1px solid rgb(235, 235, 235);
-  }
+  border-bottom-width: var(--border-rule-border-width, 1px);
+  border-bottom-color: var(--color-divider, #ebebeb);
+  border-bottom: 1px solid rgb(235, 235, 235);
 `;
