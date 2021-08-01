@@ -7,7 +7,7 @@ import PriceInfo from './PriceInfo';
 
 const DetailModal = () => {
   return (
-    <DetailModalStyle>
+    <DetailModalStyle id={'modal'}>
       <DetailModalWrapper>
         <DetailModalContainer>
           <ModalHeader />

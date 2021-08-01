@@ -23,7 +23,7 @@ const CityCardLong = ({ room, id, perNight }) => {
 
   const handleClickCityCard = (e) => {
     e.stopPropagation();
-    if (e.target.closest('button')) return;
+    if (e.target.closest('button') || e.target.closest('#modal')) return;
     if (cityCard?.current?.contains(e.target)) {
       setModal(true);
       setModalPrice(
