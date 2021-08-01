@@ -1,14 +1,18 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { selectedRoomInfoState } from '../../../../Recoil/ReservationState';
 import ModalStarLogo from '../../../../svg/ModalStarLogo';
 
 const HeaderSub = () => {
+  const selectedRoomInfo = useRecoilValue(selectedRoomInfoState);
+
   return (
     <HeaderSubStyle>
       <SpanBox>
         <StarSpan>
           <ModalStarLogo />
         </StarSpan>
-        <ScoreSpan>{`4.60`}</ScoreSpan>
+        <ScoreSpan>{selectedRoomInfo.starScore}</ScoreSpan>
         <ReviewAnchor>
           <span>(후기 20개)</span>
         </ReviewAnchor>

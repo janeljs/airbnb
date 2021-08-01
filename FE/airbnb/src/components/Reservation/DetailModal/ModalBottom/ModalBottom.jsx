@@ -1,4 +1,4 @@
-import { errorSelector, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { modalState, modalPrice } from '../../../../Recoil/ReservationState';
 import { getRequestDate, getPerNight } from '../../../../util';
@@ -23,7 +23,6 @@ const ModalBottom = () => {
     const perNight = getPerNight(checkInDate, checkOutDate);
     const totalPrice = price * perNight;
 
-    console.log(totalPrice);
     const reqCheckIn = `${checkIn.year}-${getRequestDate(
       checkIn.month + 1
     )}-${getRequestDate(checkIn.date)}`;

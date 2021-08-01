@@ -27,7 +27,6 @@ const CityCard = ({ city }) => {
     return () => window.removeEventListener('click', handleClickCityCard);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(city);
 
   return (
     <CityCardStyle ref={cityCard} onClick={handleClickCityCard}>

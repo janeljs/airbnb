@@ -39,3 +39,8 @@ export const stationRoomState = atom({
   key: 'stationRoomState',
   default: null,
 });
+
+export const selectedRoomInfoState = atom({
+  key: 'selectedRoomInfoState',
+  default: null,
+});

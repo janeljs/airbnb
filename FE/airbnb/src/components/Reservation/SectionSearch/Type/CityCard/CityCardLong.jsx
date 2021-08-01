@@ -6,6 +6,7 @@ import {
   modalPrice,
   modalState,
   nearbyRoomList,
+  selectedRoomInfoState,
 } from '../../../../../Recoil/ReservationState';
 import CityCardPrice from './CityCardPrice';
 import CityCardStar from './CityCardStar';
@@ -20,16 +21,26 @@ const CityCardLong = ({ room, id, perNight }) => {
   const setModal = useSetRecoilState(modalState);
   const roomList = useRecoilValue(nearbyRoomList);
   const setModalPrice = useSetRecoilState(modalPrice);
+  const setSeletedRoomInfo = useSetRecoilState(selectedRoomInfoState);
 
   const handleClickCityCard = (e) => {
     e.stopPropagation();
     if (e.target.closest('button') || e.target.closest('#modal')) return;
     if (cityCard?.current?.contains(e.target)) {
+      const selectedRoom = roomList.filter((room) => room.roomId === id);
+
+      const roomInfo = {
+        starScore: selectedRoom[0].averageRating,
+      };
+
+      setSeletedRoomInfo(roomInfo);
+
       setModal(true);
       setModalPrice(
         roomList.filter((room) => room.roomId === id)[0].pricePerNight
       );
       localStorage.setItem('roomID', id);
+
       return;
     }
     setModal(false);

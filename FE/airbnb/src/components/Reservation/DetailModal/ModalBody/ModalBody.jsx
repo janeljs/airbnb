@@ -8,10 +8,10 @@ import {
 } from '../../../../const';
 
 const ModalBody = () => {
-  const localData = JSON.parse(localStorage.getItem('search'));
-  const checkInData = localData?.checkIn;
-  const checkOutData = localData?.checkOut;
-  const guestData = localData?.guest;
+  const searchData = JSON.parse(localStorage.getItem('search'));
+  const checkInData = searchData?.checkIn;
+  const checkOutData = searchData?.checkOut;
+  const guestData = searchData?.guest;
   const checkIn = checkInData
     ? `${checkInData.year}. ${checkInData.month + 1}. ${checkInData.date}.`
     : `${INPUT_DATE_PLACEHOLDER}`;
