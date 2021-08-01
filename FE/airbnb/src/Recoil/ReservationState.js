@@ -44,3 +44,8 @@ export const selectedRoomInfoState = atom({
   key: 'selectedRoomInfoState',
   default: null,
 });
+
+export const modalGuestPopupState = atom({
+  key: 'modalGuestPopupState',
+  default: false,
+});

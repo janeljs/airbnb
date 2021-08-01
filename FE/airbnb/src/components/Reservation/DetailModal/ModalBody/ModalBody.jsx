@@ -1,8 +1,12 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { CHECK_IN, CHECK_OUT, INPUT_DATE_PLACEHOLDER } from '../../../../const';
+import { modalGuestPopupState } from '../../../../Recoil/ReservationState';
 import ModalBodyGuest from './ModalBodyGuest';
+import ModlaBodyGuestPopup from './ModalBodyGuestPopup';
 
 const ModalBody = () => {
+  const modalGuestPopup = useRecoilValue(modalGuestPopupState);
   const searchData = JSON.parse(localStorage.getItem('search'));
   const checkInData = searchData?.checkIn;
   const checkOutData = searchData?.checkOut;
@@ -12,7 +16,7 @@ const ModalBody = () => {
   const checkOut = checkOutData
     ? `${checkOutData.year}. ${checkOutData.month + 1}. ${checkOutData.date}.`
     : `${INPUT_DATE_PLACEHOLDER}`;
-
+  console.log(modalGuestPopup);
   return (
     <ModalBodyStyle>
       <ModalBodyWrapper>
@@ -36,6 +40,7 @@ const ModalBody = () => {
             </ModalBodyUpper>
           </ModalBodyBox>
           <ModalBodyGuest />
+          {modalGuestPopup && <ModlaBodyGuestPopup />}
         </ModalBodyContainer>
       </ModalBodyWrapper>
     </ModalBodyStyle>

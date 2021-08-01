@@ -1,10 +1,10 @@
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { GUEST, GUEST_PLACEHOLDER } from '../../../../const';
-import { guestPopupState } from '../../../../Recoil/HeaderFieldsetState';
+import { modalGuestPopupState } from '../../../../Recoil/ReservationState';
 
 const ModalBodyGuest = () => {
-  const setGuestPopup = useSetRecoilState(guestPopupState);
+  const setModalGuestPopup = useSetRecoilState(modalGuestPopupState);
 
   const searchData = JSON.parse(localStorage.getItem('search'));
   const guestData = searchData.guest;
@@ -15,8 +15,9 @@ const ModalBodyGuest = () => {
       }명`
     : `${GUEST_PLACEHOLDER}`;
 
-  const handleClickModalGuest = () => {
-    setGuestPopup(true);
+  const handleClickModalGuest = (e) => {
+    e.stopPropagation();
+    setModalGuestPopup(true);
   };
 
   return (

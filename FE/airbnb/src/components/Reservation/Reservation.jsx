@@ -3,7 +3,11 @@ import { useSetRecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
 // import { markerState } from '../../Recoil/MapState';
-import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
+import {
+  modalGuestPopupState,
+  modalState,
+  nearbyRoomList,
+} from '../../Recoil/ReservationState';
 import { getPlaceId, getRequestDate } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
@@ -13,7 +17,7 @@ const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   // const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
-
+  const setModalGuestPopup = useSetRecoilState(modalGuestPopupState);
   const searchData = JSON.parse(localStorage.getItem('search'));
   console.log(searchData);
   const { location, checkIn, checkOut, guest } = searchData;
@@ -37,15 +41,17 @@ const Reservation = () => {
   );
 
   const handleClickCloseModal = (e) => {
-    console.log(e.target);
+    if (!e.target.closest('#modal-guest-popup')) setModalGuestPopup(false);
     if (e.target.closest('button') || e.target.closest('#modal')) return;
+
     setModal(false);
   };
 
   useEffect(() => {
-    window.addEventListener('click', handleClickCloseModal);
+    window.addEventListener('click', handleClickCloseModal, false);
 
-    return () => window.removeEventListener('click', handleClickCloseModal);
+    return () =>
+      window.removeEventListener('click', handleClickCloseModal, false);
   }, []);
 
   useEffect(() => {
