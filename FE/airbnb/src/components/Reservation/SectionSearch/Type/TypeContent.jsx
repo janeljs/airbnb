@@ -9,7 +9,6 @@ const TypeContent = () => {
 
   const city = cityList && cityList[Object.keys(cityList)[0]];
   const cityName = cityList && Object.keys(cityList)[0];
-
   return (
     <TypeContentStyle>
       <TypeContentWrapper>

@@ -1,44 +1,54 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-// import { markerState } from '../../../../Recoil/MapState';
-import { modalState } from '../../../../Recoil/ReservationState';
+import { modalState, modalPrice } from '../../../../Recoil/ReservationState';
+import { getRequestDate, getPerNight } from '../../../../util';
 
 const ModalBottom = () => {
   const setModal = useSetRecoilState(modalState);
-  // const mapData = useRecoilValue(markerState);
+
+  const price = useRecoilValue(modalPrice);
 
   const handleClickReservationButton = () => {
-    const jwt = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
 
-    // const localData = localStorage.getItem('search');
-    // const checkIn = localData.checkIn;
-    // const checkOut = localData.checkOut;
+    if (!token) return alert('로그인이 필요해요');
 
-    // const checkInMonth =
-    //   localData && localData.checkIn?.month?.toString().legnth === 2
-    //     ? localData.checkIn?.month
-    //     : '0' + localData.checkIn?.month.toString();
-    // const checkOutMonth =
-    //   localData && localData.checkOut?.month?.toString().legnth === 2
-    //     ? localData.checkOut?.month
-    //     : '0' + localData.checkOut?.month.toString();
+    const searchData = JSON.parse(localStorage.getItem('search'));
+    const roomID = localStorage.getItem('roomID');
+    const { checkIn, checkOut, guest } = searchData;
+
+    const checkInDate = checkIn.date;
+    const checkOutDate = checkOut.date;
+
+    const perNight = getPerNight(checkInDate, checkOutDate);
+    const totalPrice = price * perNight;
+
+    console.log(totalPrice);
+    const reqCheckIn = `${checkIn.year}-${getRequestDate(
+      checkIn.month + 1
+    )}-${getRequestDate(checkIn.date)}`;
+    const reqCheckOut = `${checkOut.year}-${getRequestDate(
+      checkOut.month + 1
+    )}-${getRequestDate(checkOut.date)}`;
+
+    const reqAdult = guest.adult;
+    const reqChild = guest.child;
+    const reqInfant = guest.infant;
 
     const body = {
-      // checkIn: `${checkIn?.year}-${checkInMonth}-${checkIn?.date}`,
-      // checkOut: `${checkOut?.year}-${checkOutMonth}-${checkOut?.date}`,
-      checkIn: `2021-07-03`,
-      checkOut: `2021-07-07`,
-      adults: 1,
-      children: 2,
-      infants: 0,
-      totalPrice: 200000,
+      checkIn: reqCheckIn,
+      checkOut: reqCheckOut,
+      adults: reqAdult,
+      children: reqChild,
+      infants: reqInfant,
+      totalPrice: totalPrice,
     };
-    fetch('http://travel.airbnb.kro.kr/api/book/rooms/15', {
+    fetch(`http://travel.airbnb.kro.kr/api/book/rooms/${roomID}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });

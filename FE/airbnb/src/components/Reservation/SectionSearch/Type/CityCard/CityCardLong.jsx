@@ -29,6 +29,7 @@ const CityCardLong = ({ room, id, perNight }) => {
       setModalPrice(
         roomList.filter((room) => room.roomId === id)[0].pricePerNight
       );
+      localStorage.setItem('roomID', id);
       return;
     }
     setModal(false);

@@ -31,10 +31,10 @@ const Header = () => {
   };
 
   const checkLogIn = () => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    const token = localStorage.getItem('token');
+    if (token) {
       const profile_url = localStorage.getItem('profile_url');
-      const decoded = jwt_decode(jwt);
+      const decoded = jwt_decode(token);
 
       setUser({
         id: decoded.githubId,

@@ -12,9 +12,7 @@ const Price = () => {
 
   const perNight = getPerNight(checkInDate, checkOutDate);
   const totalPrice = moneyComma(price * perNight);
-  console.log(perNight);
-  console.log(price);
-  console.log(totalPrice);
+
   return (
     <PriceStyle>
       <PriceWrapper>
