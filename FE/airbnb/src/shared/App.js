@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     token && setIsLogIn(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
           {/* {!isLogIn && <Route exact path="/login" component={Callback} />} */}
-          <Redirect from="*" to="/" />
+          {/* <Redirect from="*" to="/" /> */}
         </UpperDiv>
         <BeforeAfterDiv>
           <Footer />

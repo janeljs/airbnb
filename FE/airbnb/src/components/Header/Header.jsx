@@ -45,6 +45,7 @@ const Header = () => {
 
   useEffect(() => {
     checkLogIn();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogIn]);
 
   useEffect(() => {

@@ -3,20 +3,22 @@ import styled from 'styled-components';
 import { nearbyRoomList } from '../../../../Recoil/ReservationState';
 import TypeCity from './City/TypeCity';
 import { v4 as uuidv4 } from 'uuid';
-import { roomData } from '../../../../shared/mock';
+import { getPerNight } from '../../../../util';
 
 const TypeContentCity = () => {
-  // const cityList = useRecoilValue(nearbyRoomList);
+  const roomList = useRecoilValue(nearbyRoomList);
+  const searchData = JSON.parse(localStorage.getItem('search'));
 
-  const cityName = ``;
-  const cityList = roomData['인천'];
+  const checkInDate = searchData.checkIn.date;
+  const checkOutDate = searchData.checkOut.date;
 
+  const perNight = getPerNight(checkInDate, checkOutDate);
   return (
     <TypeContentStyle>
       <TypeContentWrapper>
-        {cityList &&
-          cityList.map((city, idx) => (
-            <TypeCity key={uuidv4()} id={idx} {...{ city, cityName }} />
+        {roomList &&
+          roomList.map((room) => (
+            <TypeCity key={uuidv4()} id={room.roomId} {...{ room, perNight }} />
           ))}
       </TypeContentWrapper>
     </TypeContentStyle>

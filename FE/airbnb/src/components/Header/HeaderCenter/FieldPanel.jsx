@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import {
-  headerScrollState,
+  // headerScrollState,
   guestButtonState,
   nearbyButtonState,
   checkInButtonState,
@@ -10,7 +10,7 @@ import {
 import FieldPanelMenu from './FieldPanelMenu';
 
 const FieldPanel = () => {
-  const headerState = useRecoilValue(headerScrollState);
+  // const headerState = useRecoilValue(headerScrollState);
   const guestButton = useRecoilValue(guestButtonState);
   const nearbyButton = useRecoilValue(nearbyButtonState);
   const checkInButton = useRecoilValue(checkInButtonState);

@@ -14,24 +14,27 @@ import CityCardType from './CityCardType';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import ExtraAttach from './ExtraAttach';
 
-const CityCardLong = ({ city, id }) => {
+const CityCardLong = ({ room, id, perNight }) => {
   const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
-  const cityList = useRecoilValue(nearbyRoomList);
+  const roomList = useRecoilValue(nearbyRoomList);
   const setModalPrice = useSetRecoilState(modalPrice);
 
   const handleClickCityCard = (e) => {
     e.stopPropagation();
-
     if (e.target.closest('button')) return;
-    if (cityCard?.current?.contains(e.target)) return setModal(true);
+    if (cityCard?.current?.contains(e.target)) {
+      setModal(true);
+      setModalPrice(
+        roomList.filter((room) => room.roomId === id)[0].pricePerNight
+      );
+      return;
+    }
     setModal(false);
-    setModalPrice(cityList[id].pricePerNight);
   };
   const type = citySection ? 'big' : 'small';
-  // const amenities = city && city.amenities.join(' · ');
-
+  const amenities = room && room.amenities.join(' · ');
   const option = {
     cardWidth: 300,
     cardHeight: 200,
@@ -55,34 +58,37 @@ const CityCardLong = ({ city, id }) => {
       id={id}
       onClick={(e) => handleClickCityCard(e, id)}
     >
-      {city && (
+      {room && (
         <>
           <ExtraAttach />
-          <RaccoonSlider data={city.roomImages} option={option} />
+          <RaccoonSlider data={room.roomImages} option={option} />
           <CityCardRightBox>
             <CityTitleBox>
               <CityTitleDiv>
                 <CityCardType
-                  location={city.location}
-                  propertyType={city.propertyType}
+                  location={room.location}
+                  propertyType={room.propertyType}
                   {...{ type }}
                 />
-                <CityCardTitle title={city.title} {...{ type }} />
+                <CityCardTitle title={room.title} {...{ type }} />
                 <ShortLine />
                 <OptionUpperStyle>
-                  {/* <span>
-                    최대 인원 {city.maximumNumberOfGuests}명 · 침실{' '}
-                    {city.roomAndBedOption.beds}개 · 침대{' '}
-                    {city.roomAndBedOption.bedRooms}개 · 욕실{' '}
-                    {city.roomAndBedOption.bathRooms}개
-                  </span> */}
+                  <span>
+                    최대 인원 {room.maximumNumberOfGuests}명 · 침실{' '}
+                    {room.roomAndBedOption.beds}개 · 침대{' '}
+                    {room.roomAndBedOption.bedRooms}개 · 욕실{' '}
+                    {room.roomAndBedOption.bathRooms}개
+                  </span>
                 </OptionUpperStyle>
                 <OptionBottomStyle>
-                  {/* <span>{amenities}</span> */}
+                  <span>{amenities}</span>
                 </OptionBottomStyle>
                 <PriceBox>
-                  <CityCardStar star={city.averageRating} {...{ type }} />
-                  <CityCardPrice price={city.pricePerNight} {...{ type }} />
+                  <CityCardStar star={room.averageRating} {...{ type }} />
+                  <CityCardPrice
+                    price={room.pricePerNight}
+                    {...{ type, perNight }}
+                  />
                 </PriceBox>
               </CityTitleDiv>
             </CityTitleBox>

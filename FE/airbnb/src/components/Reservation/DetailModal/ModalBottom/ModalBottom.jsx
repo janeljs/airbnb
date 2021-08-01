@@ -1,16 +1,16 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { markerState } from '../../../../Recoil/MapState';
+// import { markerState } from '../../../../Recoil/MapState';
 import { modalState } from '../../../../Recoil/ReservationState';
 
 const ModalBottom = () => {
   const setModal = useSetRecoilState(modalState);
-  const mapData = useRecoilValue(markerState);
+  // const mapData = useRecoilValue(markerState);
 
   const handleClickReservationButton = () => {
     const jwt = localStorage.getItem('jwt');
 
-    const localData = localStorage.getItem('search');
+    // const localData = localStorage.getItem('search');
     // const checkIn = localData.checkIn;
     // const checkOut = localData.checkOut;
 

@@ -4,7 +4,7 @@ import DetailModal from './DetailModal';
 const ModalBox = () => {
   return (
     <>
-      <Background></Background>
+      <Background />
       <ModalBoxStyle>
         <ModalBoxWrapper>
           <DetailModal />

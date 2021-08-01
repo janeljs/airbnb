@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import TypeHeaderFilter from './TypeHeaderFilter';
 import TypeHeaderTitle from './TypeHeaderTitle';
 
-const TypeHeader = ({ search }) => {
+const TypeHeader = () => {
   return (
     <TypeHeaderStyle>
-      <TypeHeaderTitle {...{ search }} />
+      <TypeHeaderTitle />
       <TypeHeaderFilter />
     </TypeHeaderStyle>
   );

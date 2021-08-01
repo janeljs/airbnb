@@ -8,6 +8,7 @@ const MonthTable = ({ calendarBox }) => {
 
   useEffect(() => {
     setEachMonth(calendarBox);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
