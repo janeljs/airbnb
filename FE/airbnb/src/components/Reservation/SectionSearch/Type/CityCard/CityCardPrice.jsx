@@ -2,16 +2,29 @@ import styled from 'styled-components';
 import { moneyComma } from '../../../../../util';
 
 const CityCardPrice = ({ price }) => {
-  const commaPrice = moneyComma(price);
+  const perNightPrice = moneyComma(price);
+  const searchData = JSON.parse(localStorage.getItem('search'));
+
+  const checkInDate = searchData.checkIn.date;
+  const checkOutDate = searchData.checkOut.date;
+
+  console.log(checkInDate, checkOutDate);
+
+  const getPerNight = (checkIn, checkOut) => {
+    return checkOut - checkIn;
+  };
+
+  const perNight = getPerNight(checkInDate, checkOutDate);
+  const totalPrice = moneyComma(perNight * price);
 
   return (
     <CityCardPriceStyle>
       <PriceWrapper>
         <PriceContainer>
-          <div>{`₩${commaPrice}`}</div> / 박
+          <div>{`₩${perNightPrice}`}</div> / 박
         </PriceContainer>
         <TotalPriceBox>
-          <div>{`총액 ₩${commaPrice}`}</div>
+          <div>{`총액 ₩${totalPrice}`}</div>
         </TotalPriceBox>
       </PriceWrapper>
     </CityCardPriceStyle>

@@ -18,19 +18,20 @@ const CityCardLong = ({ room, id }) => {
   const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
-  const cityList = useRecoilValue(nearbyRoomList);
+  const roomList = useRecoilValue(nearbyRoomList);
   const setModalPrice = useSetRecoilState(modalPrice);
 
   const handleClickCityCard = (e) => {
     e.stopPropagation();
-
     if (e.target.closest('button')) return;
     if (cityCard?.current?.contains(e.target)) return setModal(true);
     setModal(false);
-    setModalPrice(cityList[id].pricePerNight);
+    setModalPrice(
+      roomList.filter((room) => room.roomId === id)[0].pricePerNight
+    );
   };
   const type = citySection ? 'big' : 'small';
-  // const amenities = city && city.amenities.join(' · ');
+  const amenities = room && room.amenities.join(' · ');
 
   const option = {
     cardWidth: 300,
@@ -70,15 +71,15 @@ const CityCardLong = ({ room, id }) => {
                 <CityCardTitle title={room.title} {...{ type }} />
                 <ShortLine />
                 <OptionUpperStyle>
-                  {/* <span>
-                    최대 인원 {city.maximumNumberOfGuests}명 · 침실{' '}
-                    {city.roomAndBedOption.beds}개 · 침대{' '}
-                    {city.roomAndBedOption.bedRooms}개 · 욕실{' '}
-                    {city.roomAndBedOption.bathRooms}개
-                  </span> */}
+                  <span>
+                    최대 인원 {room.maximumNumberOfGuests}명 · 침실{' '}
+                    {room.roomAndBedOption.beds}개 · 침대{' '}
+                    {room.roomAndBedOption.bedRooms}개 · 욕실{' '}
+                    {room.roomAndBedOption.bathRooms}개
+                  </span>
                 </OptionUpperStyle>
                 <OptionBottomStyle>
-                  {/* <span>{amenities}</span> */}
+                  <span>{amenities}</span>
                 </OptionBottomStyle>
                 <PriceBox>
                   <CityCardStar star={room.averageRating} {...{ type }} />

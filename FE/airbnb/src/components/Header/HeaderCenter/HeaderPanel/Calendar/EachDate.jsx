@@ -17,7 +17,7 @@ import {
 } from '../../../../../Recoil/HeaderFieldsetState';
 import { getDate } from '../../../../../util';
 import { setState } from '../../../../../util.ts';
-import { calendarMonthTriggerState } from '../../../../../Recoil/CalendarState';
+// import { calendarMonthTriggerState } from '../../../../../Recoil/CalendarState';
 
 const EachDate = ({ eachMonth, dateState }) => {
   const [selected, setSelected] = useState(false);

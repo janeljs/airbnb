@@ -7,8 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 const TypeContentCity = () => {
   const roomList = useRecoilValue(nearbyRoomList);
 
-  console.log(roomList);
-
   return (
     <TypeContentStyle>
       <TypeContentWrapper>

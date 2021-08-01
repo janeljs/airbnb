@@ -1,9 +1,7 @@
-import { useRef } from 'react';
 import styled from 'styled-components';
-import { GITHUB_LOGIN, SEARCH_TEXT } from '../../../const';
+import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
-import { Redirect, Link } from 'react-router-dom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   guestPopupState,
   headerScrollState,
@@ -17,7 +15,7 @@ import {
 
 const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
-  const [reservation, setReservation] = useRecoilState(reservationState);
+  const setReservation = useSetRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
   const search = useRecoilValue(searchData);
   const setNearbyButton = useSetRecoilState(nearbyButtonState);
@@ -41,11 +39,6 @@ const Search = () => {
     localStorage.setItem('search', JSON.stringify(search));
     window.location.href = '/reservation';
   };
-
-  const count = useRef(0);
-  // console.log(count.current++);
-  // console.log(search);
-  // console.log(search.guest);
 
   return (
     <SearchStyle onClick={handleClickSearchButton}>

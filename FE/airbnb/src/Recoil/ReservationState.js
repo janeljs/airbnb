@@ -34,3 +34,8 @@ export const currentPositionState = atom({
   key: 'currentPositionState',
   default: null,
 });
+
+export const stationRoomState = atom({
+  key: 'stationRoomState',
+  default: null,
+});

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import useFetch from '../../../customHooks/useFetch';
+// import useFetch from '../../../customHooks/useFetch';
 import PriceChart from './PriceChart';
 import PriceRange from './PriceRange';
 
 const PriceChartBody = () => {
-  const priceList = useFetch(
-    'https://codesquad-2021-api.herokuapp.com/airbnb/price',
-    []
-  );
+  // const priceList = useFetch(
+  //   'https://codesquad-2021-api.herokuapp.com/airbnb/price',
+  //   []
+  // );
 
   // console.log(priceList.list);
 

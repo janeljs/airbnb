@@ -2,18 +2,16 @@ import { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
-import { markerState } from '../../Recoil/MapState';
+// import { markerState } from '../../Recoil/MapState';
 import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
 import { moneyComma, getPlaceId, getRequestDate } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
-import { roomData } from '../../shared/mock';
-import { useLocation } from 'react-router-dom';
 
 const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
-  const setMapData = useSetRecoilState(markerState);
+  // const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
   const searchData = JSON.parse(localStorage.getItem('search'));
   console.log(searchData);
