@@ -24,15 +24,17 @@ const CityCardLong = ({ room, id, perNight }) => {
   const handleClickCityCard = (e) => {
     e.stopPropagation();
     if (e.target.closest('button')) return;
-    if (cityCard?.current?.contains(e.target)) return setModal(true);
+    if (cityCard?.current?.contains(e.target)) {
+      setModal(true);
+      setModalPrice(
+        roomList.filter((room) => room.roomId === id)[0].pricePerNight
+      );
+      return;
+    }
     setModal(false);
-    setModalPrice(
-      roomList.filter((room) => room.roomId === id)[0].pricePerNight
-    );
   };
   const type = citySection ? 'big' : 'small';
   const amenities = room && room.amenities.join(' · ');
-
   const option = {
     cardWidth: 300,
     cardHeight: 200,

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
 // import { markerState } from '../../Recoil/MapState';
 import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
-import { moneyComma, getPlaceId, getRequestDate } from '../../util';
+import { getPlaceId, getRequestDate } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
@@ -12,7 +12,7 @@ import SectionSearch from './SectionSearch/SectionSearch';
 const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   // const setMapData = useSetRecoilState(markerState);
-  const [modal, setModal] = useRecoilState(modalState);
+  const modal = useRecoilValue(modalState);
   const searchData = JSON.parse(localStorage.getItem('search'));
   console.log(searchData);
   const { location, checkIn, checkOut, guest } = searchData;
@@ -25,8 +25,7 @@ const Reservation = () => {
   const reqCheckOut = `&checkOut=${checkOut.year}-${getRequestDate(
     checkOut.month + 1
   )}-${getRequestDate(checkOut.date)}`;
-  // const reqPriceMin = `&priceMin=`;
-  // const reqPriceMax = `&priceMax=`;
+
   const reqAdult = `&adult=${guest.adult}`;
   const reqChild = `&child=${guest.child}`;
   const reqInfant = `&infant=${guest.infant}`;
@@ -35,15 +34,6 @@ const Reservation = () => {
     `http://travel.airbnb.kro.kr/api/web/rooms?${reqPlaceId}${reqCheckIn}${reqCheckOut}${reqAdult}${reqChild}${reqInfant}`,
     null
   );
-
-  // const mapDataList = roomData['인천'].map((el) => {
-  //   const price = moneyComma(el.pricePerNight);
-  //   return (el = {
-  //     latitude: el.latitude,
-  //     longitude: el.longitude,
-  //     title: `₩${price.toString()}`,
-  //   });
-  // });
 
   useEffect(() => {
     rooms && setRoomList(rooms.filteredRooms[`${location}`]);

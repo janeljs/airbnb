@@ -5,6 +5,7 @@ import { getRandom } from '../../../../../util';
 const CityCardStarBig = ({ star }) => {
   const randomStar = getRandom(1, 5, false);
   const randomReview = getRandom(20, 150, true);
+
   return (
     <CityCardStarStyle>
       <SpanBig>

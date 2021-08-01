@@ -1,28 +1,25 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { modalPrice } from '../../../Recoil/ReservationState';
-import { moneyComma } from '../../../util';
+import { moneyComma, getPerNight } from '../../../util';
 
 const Price = () => {
-  const localData = JSON.parse(localStorage.getItem('search'));
-  const checkInData = localData?.checkIn;
-  const checkOutData = localData?.checkOut;
-  const night =
-    (new Date(checkOutData.year, checkOutData.month, checkOutData.date) -
-      new Date(checkInData.year, checkInData.month, checkInData.date)) /
-      24 /
-      60 /
-      60 /
-      1000 -
-    1;
-  const price = useRecoilValue(modalPrice);
-  const commaPrice = moneyComma(price * night);
+  const searchData = JSON.parse(localStorage.getItem('search'));
 
+  const checkInDate = searchData.checkIn.date;
+  const checkOutDate = searchData.checkOut.date;
+  const price = useRecoilValue(modalPrice);
+
+  const perNight = getPerNight(checkInDate, checkOutDate);
+  const totalPrice = moneyComma(price * perNight);
+  console.log(perNight);
+  console.log(price);
+  console.log(totalPrice);
   return (
     <PriceStyle>
       <PriceWrapper>
         <PriceText>{`총 합계`}</PriceText>
-        <PriceNumber>{`₩${commaPrice}`}</PriceNumber>
+        <PriceNumber>{`₩${totalPrice}`}</PriceNumber>
       </PriceWrapper>
     </PriceStyle>
   );

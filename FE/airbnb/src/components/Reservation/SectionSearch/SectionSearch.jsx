@@ -3,7 +3,7 @@ import SearchPage from './SearchPage';
 import SearchRecent from './SearchRecent';
 import SearchCity from './Type/SearchCity';
 
-const SectionSearch = () => {
+const SectionSearch = ({ perNight }) => {
   return (
     <SectionSearchStyle>
       <SearchCity />
