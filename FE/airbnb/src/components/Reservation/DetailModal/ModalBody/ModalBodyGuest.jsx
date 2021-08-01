@@ -8,7 +8,7 @@ const ModalBodyGuest = () => {
 
   const searchData = JSON.parse(localStorage.getItem('search'));
   const guestData = searchData.guest;
-  console.log(guestData);
+
   const guest = guestData
     ? `게스트 ${guestData.adult + guestData.child}명, 유아 ${
         guestData.infant
@@ -17,7 +17,7 @@ const ModalBodyGuest = () => {
 
   const handleClickModalGuest = (e) => {
     e.stopPropagation();
-    setModalGuestPopup(true);
+    setModalGuestPopup((prev) => !prev);
   };
 
   return (

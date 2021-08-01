@@ -1,20 +1,58 @@
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-
 import { v4 as uuidv4 } from 'uuid';
-import { BLOCK, NONE } from '../../../../const';
-import { guestField } from '../../../../Recoil/HeaderFieldsetState';
-import { modalGuestPopupState } from '../../../../Recoil/ReservationState';
+import { BLOCK, GUEST_PLACEHOLDER, NONE } from '../../../../const';
+import {
+  modalGuestFieldState,
+  modalGuestPopupState,
+} from '../../../../Recoil/ReservationState';
 import GuestSection from '../../../Header/HeaderCenter/HeaderPanel/Guest/GuestSection';
 
 const ModlaBodyGuestPopup = () => {
   const modalGuestPopup = useRecoilValue(modalGuestPopupState);
-  const guestData = useRecoilValue(guestField);
+  const [modalGuestField, setModalGuestField] =
+    useRecoilState(modalGuestFieldState);
+  const searchData = JSON.parse(localStorage.getItem('search'));
+  const guestData = searchData.guest;
+
+  useEffect(() => {
+    const userGuestData = {
+      initValue: GUEST_PLACEHOLDER,
+      value: [
+        {
+          id: 0,
+          header: '성인',
+          info: '만 13세 이상',
+          count: guestData.adult,
+          max: 16,
+        },
+        {
+          id: 1,
+          header: '어린이',
+          info: '만 2~12세',
+          count: guestData.child,
+          max: 5,
+        },
+        {
+          id: 2,
+          header: '유아', //
+          info: '만 2세 미만',
+          count: guestData.infant,
+          max: 5,
+        },
+      ],
+      state: false,
+    };
+
+    setModalGuestField(userGuestData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <GuestPopupStyle {...{ modalGuestPopup }} id={'modal-guest-popup'}>
       <GuestPopupWrapper>
-        {guestData.value.map(({ header, info, count, id }) => (
+        {modalGuestField.value.map(({ header, info, count, id }) => (
           <GuestSection {...{ header, info, count, id }} key={uuidv4()} />
         ))}
       </GuestPopupWrapper>

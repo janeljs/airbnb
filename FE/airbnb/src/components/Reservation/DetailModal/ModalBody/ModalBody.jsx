@@ -16,7 +16,7 @@ const ModalBody = () => {
   const checkOut = checkOutData
     ? `${checkOutData.year}. ${checkOutData.month + 1}. ${checkOutData.date}.`
     : `${INPUT_DATE_PLACEHOLDER}`;
-  console.log(modalGuestPopup);
+
   return (
     <ModalBodyStyle>
       <ModalBodyWrapper>
