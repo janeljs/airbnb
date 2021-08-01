@@ -1,20 +1,9 @@
 import styled from 'styled-components';
 import { moneyComma } from '../../../../../util';
 
-const CityCardPrice = ({ price }) => {
+const CityCardPrice = ({ price, perNight }) => {
   const perNightPrice = moneyComma(price);
-  const searchData = JSON.parse(localStorage.getItem('search'));
 
-  const checkInDate = searchData.checkIn.date;
-  const checkOutDate = searchData.checkOut.date;
-
-  console.log(checkInDate, checkOutDate);
-
-  const getPerNight = (checkIn, checkOut) => {
-    return checkOut - checkIn;
-  };
-
-  const perNight = getPerNight(checkInDate, checkOutDate);
   const totalPrice = moneyComma(perNight * price);
 
   return (

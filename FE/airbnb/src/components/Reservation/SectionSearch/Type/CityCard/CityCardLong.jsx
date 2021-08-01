@@ -14,7 +14,7 @@ import CityCardType from './CityCardType';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import ExtraAttach from './ExtraAttach';
 
-const CityCardLong = ({ room, id }) => {
+const CityCardLong = ({ room, id, perNight }) => {
   const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
@@ -83,7 +83,10 @@ const CityCardLong = ({ room, id }) => {
                 </OptionBottomStyle>
                 <PriceBox>
                   <CityCardStar star={room.averageRating} {...{ type }} />
-                  <CityCardPrice price={room.pricePerNight} {...{ type }} />
+                  <CityCardPrice
+                    price={room.pricePerNight}
+                    {...{ type, perNight }}
+                  />
                 </PriceBox>
               </CityTitleDiv>
             </CityTitleBox>

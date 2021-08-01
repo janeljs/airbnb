@@ -62,3 +62,8 @@ export const getPlaceId = (city: string) => {
 export const getRequestDate = (date: number) => {
   return date > 10 ? `${date}` : `0${date}`;
 };
+
+export const getPerNight = (checkIn: number, checkOut: number) => {
+  if (checkIn > checkOut) checkIn -= 31;
+  return checkOut - checkIn;
+};

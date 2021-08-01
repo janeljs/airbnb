@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import CityCardLong from '../CityCard/CityCardLong';
 
-const TypeCityContent = ({ room, id }) => {
+const TypeCityContent = ({ room, id, perNight }) => {
   return (
     <TypeCityContentStyle>
       <TypeCityContentWrapper>
         <TypeCityUpperLine />
-        <CityCardLong {...{ room, id }} />
+        <CityCardLong {...{ room, id, perNight }} />
         <TypeCityBottomLine />
       </TypeCityContentWrapper>
     </TypeCityContentStyle>
