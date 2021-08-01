@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
@@ -16,17 +15,17 @@ import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/Rac
 import ExtraAttach from './ExtraAttach';
 
 const CityCardLong = ({ room, id, perNight }) => {
-  const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
   const roomList = useRecoilValue(nearbyRoomList);
   const setModalPrice = useSetRecoilState(modalPrice);
   const setSeletedRoomInfo = useSetRecoilState(selectedRoomInfoState);
 
-  const handleClickCityCard = (e) => {
-    e.stopPropagation();
+  const handleClickCityCard = (e, id) => {
+    e.preventDefault();
+
     if (e.target.closest('button') || e.target.closest('#modal')) return;
-    if (cityCard?.current?.contains(e.target)) {
+    if (+e.currentTarget.id === id) {
       const selectedRoom = roomList.filter((room) => room.roomId === id);
 
       const roomInfo = {
@@ -57,19 +56,8 @@ const CityCardLong = ({ room, id, perNight }) => {
     buttonSize: 24,
   };
 
-  useEffect(() => {
-    window.addEventListener('click', handleClickCityCard);
-
-    return () => window.removeEventListener('click', handleClickCityCard);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <CityCardLongStyle
-      ref={cityCard}
-      id={id}
-      onClick={(e) => handleClickCityCard(e, id)}
-    >
+    <CityCardLongStyle id={id} onClick={(e) => handleClickCityCard(e, id)}>
       {room && (
         <>
           <ExtraAttach />

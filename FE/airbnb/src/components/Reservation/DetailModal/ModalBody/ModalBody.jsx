@@ -1,28 +1,17 @@
 import styled from 'styled-components';
-import {
-  CHECK_IN,
-  CHECK_OUT,
-  GUEST,
-  GUEST_PLACEHOLDER,
-  INPUT_DATE_PLACEHOLDER,
-} from '../../../../const';
+import { CHECK_IN, CHECK_OUT, INPUT_DATE_PLACEHOLDER } from '../../../../const';
+import ModalBodyGuest from './ModalBodyGuest';
 
 const ModalBody = () => {
   const searchData = JSON.parse(localStorage.getItem('search'));
   const checkInData = searchData?.checkIn;
   const checkOutData = searchData?.checkOut;
-  const guestData = searchData?.guest;
   const checkIn = checkInData
     ? `${checkInData.year}. ${checkInData.month + 1}. ${checkInData.date}.`
     : `${INPUT_DATE_PLACEHOLDER}`;
   const checkOut = checkOutData
     ? `${checkOutData.year}. ${checkOutData.month + 1}. ${checkOutData.date}.`
     : `${INPUT_DATE_PLACEHOLDER}`;
-  const guest = guestData
-    ? `게스트 ${guestData.adult + guestData.child}명, 유아 ${
-        guestData.infant
-      }명`
-    : `${GUEST_PLACEHOLDER}`;
 
   return (
     <ModalBodyStyle>
@@ -46,16 +35,7 @@ const ModalBody = () => {
               </div>
             </ModalBodyUpper>
           </ModalBodyBox>
-          <ModalBodyBox>
-            <ModalBodyBottom>
-              <div>
-                <GuestLabel>
-                  <div>{GUEST}</div>
-                  <div>{guest}</div>
-                </GuestLabel>
-              </div>
-            </ModalBodyBottom>
-          </ModalBodyBox>
+          <ModalBodyGuest />
         </ModalBodyContainer>
       </ModalBodyWrapper>
     </ModalBodyStyle>
@@ -161,19 +141,4 @@ const CheckInBoxStyle = styled(CheckBox)`
 const CheckOutBoxStyle = styled(CheckBox)`
   overflow: hidden;
   border-left: 1px solid rgb(176, 176, 176);
-`;
-
-const ModalBodyBottom = styled.div`
-  position: relative;
-  width: 100%;
-
-  border-top: 1px solid rgb(176, 176, 176);
-
-  div {
-    flex: 1 1 0%;
-  }
-`;
-
-const GuestLabel = styled(CheckBox)`
-  overflow: hidden;
 `;
