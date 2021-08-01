@@ -13,6 +13,7 @@ import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import ExtraAttach from './ExtraAttach';
+import { useEffect } from 'react';
 
 const CityCardLong = ({ room, id, perNight }) => {
   const citySection = useRecoilValue(citySectionState);
@@ -22,7 +23,7 @@ const CityCardLong = ({ room, id, perNight }) => {
   const setSeletedRoomInfo = useSetRecoilState(selectedRoomInfoState);
 
   const handleClickCityCard = (e, id) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     if (e.target.closest('button') || e.target.closest('#modal')) return;
     if (+e.currentTarget.id === id) {
@@ -42,8 +43,8 @@ const CityCardLong = ({ room, id, perNight }) => {
 
       return;
     }
-    setModal(false);
   };
+
   const type = citySection ? 'big' : 'small';
   const amenities = room && room.amenities.join(' · ');
   const option = {
@@ -55,6 +56,18 @@ const CityCardLong = ({ room, id, perNight }) => {
     buttonType: 'default',
     buttonSize: 24,
   };
+
+  // const handleClickCloseModal = (e) => {
+  //   console.log(e.target);
+  //   if (e.target.closest('button') || e.target.closest('#modal')) return;
+  //   setModal(false);
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('click', handleClickCloseModal);
+
+  //   return () => window.removeEventListener('click', handleClickCloseModal);
+  // }, []);
 
   return (
     <CityCardLongStyle id={id} onClick={(e) => handleClickCityCard(e, id)}>

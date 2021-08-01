@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   citySectionState,
-  modalState,
+  // modalState,
 } from '../../../../../Recoil/ReservationState';
 import CityCardImage from './CityCardImage';
 import CityCardStar from './CityCardStar';
@@ -13,12 +13,12 @@ import CityCardType from './CityCardType';
 const CityCard = ({ city }) => {
   const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
-  const setModal = useSetRecoilState(modalState);
+  // const setModal = useSetRecoilState(modalState);
   const handleClickCityCard = (e) => {
     e.stopPropagation();
 
-    if (cityCard?.current?.contains(e.target)) return setModal(true);
-    setModal(false);
+    // if (cityCard?.current?.contains(e.target)) return setModal(true);
+    // setModal(false);
   };
   const type = citySection ? 'big' : 'small';
   useEffect(() => {

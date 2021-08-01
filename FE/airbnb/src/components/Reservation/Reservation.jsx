@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
 // import { markerState } from '../../Recoil/MapState';
@@ -12,7 +12,8 @@ import SectionSearch from './SectionSearch/SectionSearch';
 const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   // const setMapData = useSetRecoilState(markerState);
-  const modal = useRecoilValue(modalState);
+  const [modal, setModal] = useRecoilState(modalState);
+
   const searchData = JSON.parse(localStorage.getItem('search'));
   console.log(searchData);
   const { location, checkIn, checkOut, guest } = searchData;
@@ -34,6 +35,18 @@ const Reservation = () => {
     `http://travel.airbnb.kro.kr/api/web/rooms?${reqPlaceId}${reqCheckIn}${reqCheckOut}${reqAdult}${reqChild}${reqInfant}`,
     null
   );
+
+  const handleClickCloseModal = (e) => {
+    console.log(e.target);
+    if (e.target.closest('button') || e.target.closest('#modal')) return;
+    setModal(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickCloseModal);
+
+    return () => window.removeEventListener('click', handleClickCloseModal);
+  }, []);
 
   useEffect(() => {
     rooms && setRoomList(rooms.filteredRooms[`${location}`]);
