@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { errorSelector, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { modalState, modalPrice } from '../../../../Recoil/ReservationState';
 import { getRequestDate, getPerNight } from '../../../../util';
@@ -51,7 +51,9 @@ const ModalBottom = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
-    });
+    })
+      .then((res) => res.json())
+      .then((res) => console.log('예약성공!', res));
     setModal(false);
   };
 
