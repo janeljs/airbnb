@@ -16,7 +16,7 @@ const HeaderLeft = () => {
 export default HeaderLeft;
 
 const HeaderLeftStyle = styled.div`
-  flex: 0 0 auto;
+  flex: 1 0 auto;
 
   @media (min-width: 950px) {
     flex: 1 0 140px;
