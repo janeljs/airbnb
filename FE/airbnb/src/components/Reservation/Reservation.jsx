@@ -22,14 +22,25 @@ const Reservation = () => {
   console.log(searchData);
   const { location, checkIn, checkOut, guest } = searchData;
 
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = getRequestDate(today.getMonth() + 1);
+  const date = getRequestDate(today.getDate());
+  const nextDate = getRequestDate(today.getDate() + 1);
   const locationData = getPlaceId(location);
   const reqPlaceId = locationData && `placeId=${locationData}`;
-  const reqCheckIn = `&checkIn=${checkIn.year}-${getRequestDate(
-    checkIn.month + 1
-  )}-${getRequestDate(checkIn.date)}`;
-  const reqCheckOut = `&checkOut=${checkOut.year}-${getRequestDate(
-    checkOut.month + 1
-  )}-${getRequestDate(checkOut.date)}`;
+  const reqCheckIn =
+    checkIn === '날짜 입력'
+      ? `&checkIn=${year}-${month}-${date}`
+      : `&checkIn=${checkIn.year}-${getRequestDate(
+          checkIn.month + 1
+        )}-${getRequestDate(checkIn.date)}`;
+  const reqCheckOut =
+    checkOut === '날짜 입력'
+      ? `&checkOut=${year}-${month}-${nextDate}`
+      : `&checkOut=${checkOut.year}-${getRequestDate(
+          checkOut.month + 1
+        )}-${getRequestDate(checkOut.date)}`;
 
   const reqAdult = `&adult=${guest.adult}`;
   const reqChild = `&child=${guest.child}`;
