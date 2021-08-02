@@ -21,7 +21,6 @@ const Reservation = () => {
   const searchData = JSON.parse(localStorage.getItem('search'));
   console.log(searchData);
   const { location, checkIn, checkOut, guest } = searchData;
-
   const today = new Date();
   const year = today.getFullYear();
   const month = getRequestDate(today.getMonth() + 1);

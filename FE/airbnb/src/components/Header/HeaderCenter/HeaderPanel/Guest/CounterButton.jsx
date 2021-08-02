@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   guestDeleteButton,
   guestField,
@@ -17,7 +17,7 @@ const MinusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
   const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
-  const modal = useRecoilState(modalState);
+  const modal = useRecoilValue(modalState);
   const [modalGuestCount, setModalGuestCount] =
     useRecoilState(modalGuestFieldState);
   const [search, setSearch] = useRecoilState(searchData);
@@ -101,7 +101,7 @@ const PlusButton = ({ count, id }) => {
   const [disabled, setDisabled] = useState(false);
   const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
   const [search, setSearch] = useRecoilState(searchData);
-  const modal = useRecoilState(modalState);
+  const modal = useRecoilValue(modalState);
   const [modalGuestCount, setModalGuestCount] =
     useRecoilState(modalGuestFieldState);
 
