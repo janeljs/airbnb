@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
+import { searchData } from '../../Recoil/HeaderFieldsetState';
 // import { markerState } from '../../Recoil/MapState';
 import {
   modalGuestPopupState,
@@ -18,9 +19,9 @@ const Reservation = () => {
   // const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
   const setModalGuestPopup = useSetRecoilState(modalGuestPopupState);
-  const searchData = JSON.parse(localStorage.getItem('search'));
-  console.log(searchData);
-  const { location, checkIn, checkOut, guest } = searchData;
+  const setSearch = useSetRecoilState(searchData);
+  const searchLocalData = JSON.parse(localStorage.getItem('search'));
+  const { location, checkIn, checkOut, guest } = searchLocalData;
 
   const locationData = getPlaceId(location);
   const reqPlaceId = locationData && `placeId=${locationData}`;
@@ -46,6 +47,18 @@ const Reservation = () => {
 
     setModal(false);
   };
+
+  useEffect(() => {
+    const userData = {
+      location: location,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      guest: guest,
+    };
+
+    setSearch(userData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     window.addEventListener('click', handleClickCloseModal, false);
