@@ -42,7 +42,7 @@ const GuestPopup = () => {
         infant: guestData.value[2].count,
       },
     });
-    console.log(guestData);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guestData.value]);
 

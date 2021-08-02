@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import {
   guestPopupState,
   headerScrollState,
@@ -11,6 +11,7 @@ import {
   searchData,
   searchTextState,
   nearbyButtonState,
+  calendarPopupState,
 } from '../../../Recoil/HeaderFieldsetState';
 
 const Search = () => {
@@ -22,8 +23,7 @@ const Search = () => {
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
   const setGuestButton = useSetRecoilState(guestButtonState);
   const setGuestPopup = useSetRecoilState(guestPopupState);
-
-  console.log(search);
+  const setCalendarPopup = useSetRecoilState(calendarPopupState);
 
   const handleClickSearchButton = (e) => {
     e.stopPropagation();
@@ -35,6 +35,14 @@ const Search = () => {
       setGuestPopup(false);
       return;
     }
+    console.log(search);
+    if (search.checkIn === '날짜 입력' || search.checkOut === '날짜 입력') {
+      setCalendarPopup(true);
+      setGuestPopup(false);
+      setNearbyPopup(false);
+      return;
+    }
+
     setReservation(true);
     setHeaderState(true);
 
