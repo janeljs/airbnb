@@ -18,7 +18,7 @@ const HeaderCenterStyle = styled.div`
   min-width: 0px;
   padding: 0 24px;
 
-  @media (min-width: 950px) {
+  /* @media (min-width: 950px) {
     text-align: center;
-  }
+  } */
 `;

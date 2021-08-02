@@ -31,10 +31,10 @@ const Header = () => {
   };
 
   const checkLogIn = () => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    const token = localStorage.getItem('token');
+    if (token) {
       const profile_url = localStorage.getItem('profile_url');
-      const decoded = jwt_decode(jwt);
+      const decoded = jwt_decode(token);
 
       setUser({
         id: decoded.githubId,
@@ -113,10 +113,8 @@ const HeaderStyle = styled.header`
   width: 100%;
   z-index: 0;
   opacity: 1;
-
-    @media (min-width: 950px) {
-      transform: scaleY(2.25);
-    }
+  transform: scaleY(2.25);
+    
   }
       `
       : `

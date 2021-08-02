@@ -247,7 +247,7 @@ export const URL = {
 };
 
 // Reservation > Modal
-export const MODAL_TITLE = '요금을 확인하려면 날짜를 입력하세요.';
+export const MODAL_TITLE = '이제 곧 예약이 완료됩니다.';
 
 export const PLACE_ID = [
   'ChIJzWXFYYuifDUR64Pq5LTtioU',

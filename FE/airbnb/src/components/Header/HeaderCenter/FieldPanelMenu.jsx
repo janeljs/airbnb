@@ -45,7 +45,7 @@ const FieldPanelMenu = () => {
   const guest = useRef();
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
   const [calendarPopup, setCalendarPopup] = useRecoilState(calendarPopupState);
-  const setGuestPopup = useSetRecoilState(guestPopupState);
+  const [guestPopup, setGuestPopup] = useRecoilState(guestPopupState);
   const setSearchState = useSetRecoilState(searchButtonState);
   const setSearchTextState = useSetRecoilState(searchTextState);
   const [nearbyButton, setNearbyButton] = useRecoilState(nearbyButtonState);
@@ -245,7 +245,7 @@ const FieldPanelMenu = () => {
       <FieldPanelMenuRight ref={guest}>
         <PanelLast name={GUEST} />
         {guestDeleteButtonState && <GuestDeleteButton />}
-        <GuestPopup />
+        {guestPopup && <GuestPopup />}
         <Search />
       </FieldPanelMenuRight>
     </FieldPanelMenuStyle>

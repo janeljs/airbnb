@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
@@ -6,6 +5,7 @@ import {
   modalPrice,
   modalState,
   nearbyRoomList,
+  selectedRoomInfoState,
 } from '../../../../../Recoil/ReservationState';
 import CityCardPrice from './CityCardPrice';
 import CityCardStar from './CityCardStar';
@@ -15,24 +15,35 @@ import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/Rac
 import ExtraAttach from './ExtraAttach';
 
 const CityCardLong = ({ room, id, perNight }) => {
-  const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
   const roomList = useRecoilValue(nearbyRoomList);
   const setModalPrice = useSetRecoilState(modalPrice);
+  const setSeletedRoomInfo = useSetRecoilState(selectedRoomInfoState);
 
-  const handleClickCityCard = (e) => {
+  const handleClickCityCard = (e, id) => {
     e.stopPropagation();
-    if (e.target.closest('button')) return;
-    if (cityCard?.current?.contains(e.target)) {
+
+    if (e.target.closest('button') || e.target.closest('#modal')) return;
+    if (+e.currentTarget.id === id) {
+      const selectedRoom = roomList.filter((room) => room.roomId === id);
+
+      const roomInfo = {
+        starScore: selectedRoom[0].averageRating,
+      };
+
+      setSeletedRoomInfo(roomInfo);
+
       setModal(true);
       setModalPrice(
         roomList.filter((room) => room.roomId === id)[0].pricePerNight
       );
+      localStorage.setItem('roomID', id);
+
       return;
     }
-    setModal(false);
   };
+
   const type = citySection ? 'big' : 'small';
   const amenities = room && room.amenities.join(' · ');
   const option = {
@@ -45,19 +56,8 @@ const CityCardLong = ({ room, id, perNight }) => {
     buttonSize: 24,
   };
 
-  useEffect(() => {
-    window.addEventListener('click', handleClickCityCard);
-
-    return () => window.removeEventListener('click', handleClickCityCard);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <CityCardLongStyle
-      ref={cityCard}
-      id={id}
-      onClick={(e) => handleClickCityCard(e, id)}
-    >
+    <CityCardLongStyle id={id} onClick={(e) => handleClickCityCard(e, id)}>
       {room && (
         <>
           <ExtraAttach />

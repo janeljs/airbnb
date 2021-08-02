@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import TypeCityContent from './TypeCityContent';
-// import TypeCityTitle from './TypeCityTitle';
 
 const TypeCity = ({ room, id, perNight }) => {
   return (
@@ -8,7 +7,6 @@ const TypeCity = ({ room, id, perNight }) => {
       <TypeCityWrapper>
         <TypeCityContainer>
           <TypeCityBox>
-            {/* {cityName && <TypeCityTitle {...{ cityName }} />} */}
             <TypeCityContent {...{ room, id, perNight }} />
           </TypeCityBox>
         </TypeCityContainer>
@@ -20,6 +18,8 @@ const TypeCity = ({ room, id, perNight }) => {
 export default TypeCity;
 
 const TypeCityStyle = styled.div`
+  cursor: pointer;
+
   ::before {
     display: flex;
     content: '';

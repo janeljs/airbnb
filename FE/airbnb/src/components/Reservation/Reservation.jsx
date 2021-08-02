@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
+import { searchData } from '../../Recoil/HeaderFieldsetState';
 // import { markerState } from '../../Recoil/MapState';
-import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
+import {
+  modalGuestPopupState,
+  modalState,
+  nearbyRoomList,
+} from '../../Recoil/ReservationState';
 import { getPlaceId, getRequestDate } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
@@ -12,10 +17,11 @@ import SectionSearch from './SectionSearch/SectionSearch';
 const Reservation = () => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   // const setMapData = useSetRecoilState(markerState);
-  const modal = useRecoilValue(modalState);
-  const searchData = JSON.parse(localStorage.getItem('search'));
-  console.log(searchData);
-  const { location, checkIn, checkOut, guest } = searchData;
+  const [modal, setModal] = useRecoilState(modalState);
+  const setModalGuestPopup = useSetRecoilState(modalGuestPopupState);
+  const setSearch = useSetRecoilState(searchData);
+  const searchLocalData = JSON.parse(localStorage.getItem('search'));
+  const { location, checkIn, checkOut, guest } = searchLocalData;
 
   const locationData = getPlaceId(location);
   const reqPlaceId = locationData && `placeId=${locationData}`;
@@ -34,6 +40,32 @@ const Reservation = () => {
     `http://travel.airbnb.kro.kr/api/web/rooms?${reqPlaceId}${reqCheckIn}${reqCheckOut}${reqAdult}${reqChild}${reqInfant}`,
     null
   );
+
+  const handleClickCloseModal = (e) => {
+    if (!e.target.closest('#modal-guest-popup')) setModalGuestPopup(false);
+    if (e.target.closest('button') || e.target.closest('#modal')) return;
+
+    setModal(false);
+  };
+
+  useEffect(() => {
+    const userData = {
+      location: location,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      guest: guest,
+    };
+
+    setSearch(userData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickCloseModal, false);
+
+    return () =>
+      window.removeEventListener('click', handleClickCloseModal, false);
+  }, []);
 
   useEffect(() => {
     rooms && setRoomList(rooms.filteredRooms[`${location}`]);

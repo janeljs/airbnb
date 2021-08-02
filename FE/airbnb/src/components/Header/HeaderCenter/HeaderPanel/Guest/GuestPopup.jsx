@@ -1,21 +1,55 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { BLOCK, NONE } from '../../../../../const';
 import {
   guestField,
+  guestPopupDataState,
   guestPopupState,
+  searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
 import GuestSection from './GuestSection';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from 'react';
 
 const GuestPopup = () => {
   const guestState = useRecoilValue(guestPopupState);
   const guestData = useRecoilValue(guestField);
+  const [guestPopupData, setGuestPopupData] =
+    useRecoilState(guestPopupDataState);
+  const [search, setSearch] = useRecoilState(searchData);
+
+  const handleClickGuestPopup = (e) => {
+    e.stopPropagation();
+  };
+
+  useEffect(() => {
+    setGuestPopupData({
+      ...guestPopupData,
+      value: guestPopupData.value.map((el, idx) => {
+        return {
+          ...el,
+          count: guestData.value[idx].count,
+        };
+      }),
+    });
+
+    setSearch({
+      ...search,
+      guest: {
+        ...search.guest,
+        adult: guestData.value[0].count,
+        child: guestData.value[1].count,
+        infant: guestData.value[2].count,
+      },
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [guestData.value]);
 
   return (
-    <GuestPopupStyle {...{ guestState }}>
+    <GuestPopupStyle {...{ guestState }} onClick={handleClickGuestPopup}>
       <GuestPopupWrapper>
-        {guestData.value.map(({ header, info, count, id }) => (
+        {guestPopupData.value.map(({ header, info, count, id }) => (
           <GuestSection {...{ header, info, count, id }} key={uuidv4()} />
         ))}
       </GuestPopupWrapper>
