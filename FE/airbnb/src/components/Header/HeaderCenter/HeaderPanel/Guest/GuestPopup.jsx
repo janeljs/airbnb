@@ -5,6 +5,7 @@ import {
   guestField,
   guestPopupDataState,
   guestPopupState,
+  searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
 import GuestSection from './GuestSection';
 import { v4 as uuidv4 } from 'uuid';
@@ -15,6 +16,7 @@ const GuestPopup = () => {
   const guestData = useRecoilValue(guestField);
   const [guestPopupData, setGuestPopupData] =
     useRecoilState(guestPopupDataState);
+  const [search, setSearch] = useRecoilState(searchData);
 
   const handleClickGuestPopup = (e) => {
     e.stopPropagation();
@@ -31,6 +33,16 @@ const GuestPopup = () => {
       }),
     });
 
+    setSearch({
+      ...search,
+      guest: {
+        ...search.guest,
+        adult: guestData.value[0].count,
+        child: guestData.value[1].count,
+        infant: guestData.value[2].count,
+      },
+    });
+    console.log(guestData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guestData.value]);
 

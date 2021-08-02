@@ -23,6 +23,8 @@ const Search = () => {
   const setGuestButton = useSetRecoilState(guestButtonState);
   const setGuestPopup = useSetRecoilState(guestPopupState);
 
+  console.log(search);
+
   const handleClickSearchButton = (e) => {
     e.stopPropagation();
 
