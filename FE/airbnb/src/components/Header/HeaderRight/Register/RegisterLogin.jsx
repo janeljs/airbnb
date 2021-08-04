@@ -12,7 +12,8 @@ const RegisterLogin = () => {
   const [gitHubLoginState, setGitHubLoginState] = useRecoilState(gitHubLogin);
   const isLogIn = useRecoilValue(isLoggedIn);
   const [logInText, setLogInText] = useState(LOGIN);
-  const authUri = `${U.AUTH}${process.env.REACT_APP_GITHUB_CLIENT_ID}`;
+  const authUri = `${U.AUTH}${process.env.REACT_APP_GITHUB_CLIENT_ID_DEPLOY}`;
+  // const authUri = `${U.AUTH}${process.env.REACT_APP_GITHUB_CLIENT_ID}`;
   const token = localStorage.getItem('token');
   const decodedToken = token && jwt_decode(token);
 
