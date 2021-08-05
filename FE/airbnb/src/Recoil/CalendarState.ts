@@ -1,8 +1,8 @@
 import { atom, selector } from 'recoil';
 import { Calendar } from '../calendar';
 
-export const calendar = atom({
-  key: 'calendar',
+export const calendarPositionState = atom({
+  key: 'calendarPositionState',
   default: -391,
 });
 

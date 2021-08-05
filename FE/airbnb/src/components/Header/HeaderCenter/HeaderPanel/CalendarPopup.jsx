@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import CalendarList from './Calendar/CalendarList';
 import { Calendar as S } from '../../../../styles/styles';
+import CalendarListWrapper from './Calendar/CalendarListWrapper';
 import CalendarTabsWrapper from './Calendar/CalendarTabsWrapper';
 
 const CalendarPopup = () => {
@@ -13,9 +12,7 @@ const CalendarPopup = () => {
       <S.CalendarSection>
         <S.CalendarWrapper>
           <CalendarTabsWrapper {...{ tabState, setTabState }} />
-          <CalendarListWrapper>
-            <CalendarList />
-          </CalendarListWrapper>
+          <CalendarListWrapper />
         </S.CalendarWrapper>
       </S.CalendarSection>
     </S.CalendarPopup>
@@ -23,5 +20,3 @@ const CalendarPopup = () => {
 };
 
 export default CalendarPopup;
-
-const CalendarListWrapper = styled.div``;
