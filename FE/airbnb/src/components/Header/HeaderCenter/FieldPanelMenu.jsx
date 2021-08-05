@@ -32,7 +32,7 @@ const FieldPanelMenu = () => {
       <S.FieldPanelMenuSeparator />
       <S.FieldPanelMenuCalendar>
         <FieldPanelMenuCheckInButton />
-        {calendarPopup && <CalendarPopup {...{ calendarPopup }} />}
+        {calendarPopup && <CalendarPopup />}
         <S.FieldPanelMenuSeparator />
         <FieldPanelMenuCheckOutButton />
       </S.FieldPanelMenuCalendar>

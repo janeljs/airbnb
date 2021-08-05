@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { BLOCK, NONE } from '../const';
 
+// Field Panel
+
 export const FieldPanel = {
   FieldPanelMenu: styled.div`
     display: flex;
@@ -52,6 +54,8 @@ export const FieldPanel = {
   `,
 };
 
+// Calendar
+
 export const Calendar = {
   Calendar: styled.div``,
 
@@ -68,10 +72,34 @@ export const Calendar = {
     overflow: hidden auto;
     padding: 16px 32px;
     right: 0px;
+  `,
+  CalendarSection: styled.section`
+    padding-top: 16px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
 
-    /* display: ${({ calendarState }) => (calendarState ? BLOCK : NONE)}; */
+  CalendarWrapper: styled.div``,
+
+  CalendarTabsWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 32px;
+  `,
+
+  CalendarTabsBox: styled.div`
+    background-color: rgb(235, 235, 235);
+    border-radius: 100px;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: flex;
   `,
 };
+
+// NearbyPopup
 
 export const NearbyPopup = {
   NearbyPopup: styled.div`
