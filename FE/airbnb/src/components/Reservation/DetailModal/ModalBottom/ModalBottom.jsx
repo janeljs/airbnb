@@ -1,7 +1,7 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { modalState, modalPrice } from '../../../../Recoil/ReservationState';
-import { getRequestDate, getPerNight } from '../../../../util';
+import { getRequestDate, getPerNight } from '../../../../utils/util';
 
 const ModalBottom = () => {
   const setModal = useSetRecoilState(modalState);

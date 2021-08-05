@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainSloganSize } from '../../style/CommonStyles';
+import { MainSloganSize } from '../../../styles/CommonStyles';
 import Background from './Background';
 import Slogan from './Slogan';
 

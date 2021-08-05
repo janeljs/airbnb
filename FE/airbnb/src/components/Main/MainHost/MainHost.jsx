@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainHostSize } from '../../style/CommonStyles';
+import { MainHostSize } from '../../../styles/CommonStyles';
 import MainHostContent from './MainHostContent';
 
 const MainHost = () => {

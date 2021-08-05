@@ -8,15 +8,16 @@ import {
 } from '../../../../../const';
 import { current } from '../../../../../Recoil/CalendarState';
 import {
-  checkInButtonState,
   checkInField,
   checkOutButtonState,
-  checkOutDeleteButton,
+  checkOutDeleteButtonState,
   checkOutField,
+  fieldPanelMenuActiveState,
   searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
-import { getDate } from '../../../../../util';
-import { setState } from '../../../../../util.ts';
+import updatePanelMenuState from '../../../../../utils/updatePanelMenuState';
+import { getDate } from '../../../../../utils/util';
+import { setState } from '../../../../../utils/util.ts';
 // import { calendarMonthTriggerState } from '../../../../../Recoil/CalendarState';
 
 const EachDate = ({ eachMonth, dateState }) => {
@@ -28,11 +29,10 @@ const EachDate = ({ eachMonth, dateState }) => {
   const [checkOutDate, setCheckOutDate] = useRecoilState(checkOutField);
   const [hoverBox, setHoverBox] = useState(null);
   const now = useRecoilValue(current);
-  const setCheckInButton = useSetRecoilState(checkInButtonState);
-  const [checkOutButton, setCheckOutButton] =
-    useRecoilState(checkOutButtonState);
-  const setCheckOutDelete = useSetRecoilState(checkOutDeleteButton);
+  const checkOutButton = useRecoilValue(checkOutButtonState);
+  const setCheckOutDeleteButton = useSetRecoilState(checkOutDeleteButtonState);
   const [search, setSearch] = useRecoilState(searchData);
+  const setFieldPanelMenuActive = useSetRecoilState(fieldPanelMenuActiveState);
 
   // 컴포넌트 날짜
   const currentComponentDate = new Date(
@@ -81,31 +81,27 @@ const EachDate = ({ eachMonth, dateState }) => {
     if (componentDate > selectedCheckOut) {
       activeDate(setCheckInDate);
       resetDate(setCheckOutDate);
-      setCheckInButton(false);
-      setCheckOutButton(true);
-      setCheckOutDelete(false);
+      updatePanelMenuState(2, setFieldPanelMenuActive);
       return;
     }
     if (checkOutDate.state) {
       checkSelected();
-      setCheckOutDelete(true);
+      setCheckOutDeleteButton(true);
     }
     if (checkInDate.state) return;
     activeDate(setCheckInDate);
-    setCheckInButton(false);
-    setCheckOutButton(true);
+    updatePanelMenuState(2, setFieldPanelMenuActive);
   };
 
   const selectCheckOut = () => {
     if (checkOutDate.state) return;
     if (!checkInDate.state) {
-      setCheckInButton(true);
-      setCheckOutButton(false);
+      updatePanelMenuState(1, setFieldPanelMenuActive);
       activeDate(setCheckOutDate);
       return;
     }
     activeDate(setCheckOutDate);
-    setCheckOutDelete(true);
+    setCheckOutDeleteButton(true);
   };
 
   const checkPanelTab = () => {
@@ -122,12 +118,12 @@ const EachDate = ({ eachMonth, dateState }) => {
     if (componentDate < selectedCheckIn) {
       activeDate(setCheckInDate);
       resetDate(setCheckOutDate);
-      setCheckOutDelete(false);
+      setCheckOutDeleteButton(false);
       return;
     }
     if (componentDate > selectedCheckIn) {
       activeDate(setCheckOutDate);
-      setCheckOutDelete(true);
+      setCheckOutDeleteButton(true);
       checkSelected();
       return;
     }

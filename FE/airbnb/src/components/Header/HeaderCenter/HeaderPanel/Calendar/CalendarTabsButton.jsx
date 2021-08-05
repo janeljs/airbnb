@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 const CalendarTabsButton = ({ buttonName, selected, setTabState }) => {
-  const handleClickTabsButton = () => setTabState((prev) => !prev);
+  const handleClickTabsButton = (e) => {
+    e.stopPropagation();
+    setTabState((prev) => !prev);
+  };
 
   return (
     <CalendarTabsButtonStyle

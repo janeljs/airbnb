@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SloganFlexStyle } from '../../style/CommonStyles';
+import { SloganFlexStyle } from '../../../styles/CommonStyles';
 import SloganBox from './SloganBox';
 
 const Slogan = () => {

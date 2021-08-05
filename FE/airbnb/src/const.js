@@ -18,6 +18,8 @@ export const GUEST = '인원';
 export const LOCATION_PLACEHOLDER = '어디로 여행가세요?';
 export const INPUT_DATE_PLACEHOLDER = '날짜 입력';
 export const GUEST_PLACEHOLDER = '게스트 추가';
+export const NEARBY_POPUP_ICON =
+  'https://a0.muscache.com/im/pictures/fc42dde0-36a7-460e-af89-10b5e44e48d8.jpg?im_w=240&amp;im_q=lowq';
 
 export const GET = 'get';
 export const SEARCH = 'search';

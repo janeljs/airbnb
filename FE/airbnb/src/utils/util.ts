@@ -1,4 +1,4 @@
-import { CITY_LIST, LASTDATE_LIST, PLACE_ID } from './const';
+import { CITY_LIST, LASTDATE_LIST, PLACE_ID } from '../const';
 
 interface IDate {
   year: number;

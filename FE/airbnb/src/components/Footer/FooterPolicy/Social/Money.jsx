@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { MONEY_TEXT, MONEY_UNIT } from '../../../../const';
-import { FooterAnchor } from '../../../style/CommonStyles';
+import { FooterAnchor } from '../../../../styles/CommonStyles';
 
 const Money = () => {
   return (

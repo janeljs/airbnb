@@ -7,7 +7,7 @@ import {
   SITEMAP,
 } from '../../../../const';
 
-import { FooterAnchor } from '../../../style/CommonStyles';
+import { FooterAnchor } from '../../../../styles/CommonStyles';
 import Dot from './Dot';
 
 const CopyrightBoxRight = () => {

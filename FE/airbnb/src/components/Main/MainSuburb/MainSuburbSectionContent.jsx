@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useFetch from '../../../customHooks/useFetch';
+import useFetch from '../../../hooks/useFetch';
 import { v4 as uuidv4 } from 'uuid';
 import CityInfo from './CityInfo/CityInfo';
 import { URL_HOME } from '../../../const';

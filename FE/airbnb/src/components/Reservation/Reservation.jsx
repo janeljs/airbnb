@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import useFetch from '../../customHooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import { searchData } from '../../Recoil/HeaderFieldsetState';
 // import { markerState } from '../../Recoil/MapState';
 import {
@@ -9,7 +9,7 @@ import {
   modalState,
   nearbyRoomList,
 } from '../../Recoil/ReservationState';
-import { getPlaceId, getRequestDate } from '../../util';
+import { getPlaceId, getRequestDate } from '../../utils/util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
