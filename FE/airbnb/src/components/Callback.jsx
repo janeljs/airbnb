@@ -18,7 +18,15 @@ const Callback = () => {
       });
 
       try {
-        const response = await fetch(U.BASE_URL + '/github/login?code=' + code);
+        const response = await fetch(
+          U.BASE_URL + '/github/login?code=' + code,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }
+        );
         console.log('response', response);
         const data = await response.json();
         console.log(data);
