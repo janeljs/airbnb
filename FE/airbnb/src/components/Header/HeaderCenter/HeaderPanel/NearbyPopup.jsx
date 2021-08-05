@@ -20,7 +20,7 @@ const NearbyPopup = () => {
   const nearbyValue = useRecoilValue(nearbyField);
   const setFieldPanelMenuActive = useSetRecoilState(fieldPanelMenuActiveState);
 
-  const handleClickNearbyPopup = (e) => {
+  const handleClickNearbyPopupSection = (e) => {
     e.stopPropagation();
 
     const getCity = () => {
@@ -38,10 +38,12 @@ const NearbyPopup = () => {
     updatePanelMenuState(1, setFieldPanelMenuActive);
   };
 
+  const handleClickNearbyPopup = (e) => e.stopPropagation();
+
   return (
     <S.NearbyPopup {...{ nearbyPopup }} onClick={handleClickNearbyPopup}>
       <S.NearbyPopupBox>
-        <S.NearbyPopupSection>
+        <S.NearbyPopupSection onClick={handleClickNearbyPopupSection}>
           <ul>
             <li>
               <S.NearbyIcon>

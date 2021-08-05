@@ -6,9 +6,10 @@ import CalendarTabsWrapper from './Calendar/CalendarTabsWrapper';
 
 const CalendarPopup = () => {
   const [tabState, setTabState] = useState(true);
+  const handleClickCalendarPopup = (e) => e.stopPropagation();
 
   return (
-    <S.CalendarPopup>
+    <S.CalendarPopup onClick={handleClickCalendarPopup}>
       <S.CalendarSection>
         <S.CalendarWrapper>
           <CalendarTabsWrapper {...{ tabState, setTabState }} />
