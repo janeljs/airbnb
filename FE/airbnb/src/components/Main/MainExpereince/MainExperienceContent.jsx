@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SectionContentWrapper } from '../../style/CommonStyles';
+import { SectionContentWrapper } from '../../../styles/CommonStyles';
 import MainExperienceSection from './MainExperienceSection';
 
 const MainExperienceContent = () => {

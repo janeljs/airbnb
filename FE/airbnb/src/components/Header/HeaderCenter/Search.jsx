@@ -1,47 +1,36 @@
 import styled from 'styled-components';
 import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  guestPopupState,
   headerScrollState,
-  nearbyPopupState,
-  guestButtonState,
   reservationState,
   searchData,
   searchTextState,
-  nearbyButtonState,
-  calendarPopupState,
+  fieldPanelMenuActiveState,
 } from '../../../Recoil/HeaderFieldsetState';
+import updatePanelMenuState from '../../../utils/updatePanelMenuState';
 
 const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
   const setReservation = useSetRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
   const search = useRecoilValue(searchData);
-  const setNearbyButton = useSetRecoilState(nearbyButtonState);
-  const setNearbyPopup = useSetRecoilState(nearbyPopupState);
-  const setGuestButton = useSetRecoilState(guestButtonState);
-  const setGuestPopup = useSetRecoilState(guestPopupState);
-  const setCalendarPopup = useSetRecoilState(calendarPopupState);
+
+  const setFieldPanelMenuActive = useSetRecoilState(fieldPanelMenuActiveState);
 
   const handleClickSearchButton = (e) => {
     e.stopPropagation();
 
-    if (!search.location) {
-      setNearbyButton(true);
-      setNearbyPopup(true);
-      setGuestButton(false);
-      setGuestPopup(false);
-      return;
-    }
+    if (!search.location)
+      return updatePanelMenuState(0, setFieldPanelMenuActive);
+
     console.log(search);
-    if (search.checkIn === '날짜 입력' || search.checkOut === '날짜 입력') {
-      setCalendarPopup(true);
-      setGuestPopup(false);
-      setNearbyPopup(false);
-      return;
-    }
+    if (search.checkIn === '날짜 입력')
+      return updatePanelMenuState(1, setFieldPanelMenuActive);
+
+    if (search.checkOut === '날짜 입력')
+      return updatePanelMenuState(2, setFieldPanelMenuActive);
 
     setReservation(true);
     setHeaderState(true);

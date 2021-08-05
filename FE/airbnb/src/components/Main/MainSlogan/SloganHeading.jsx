@@ -3,7 +3,7 @@ import { SLOGAN_HEADING } from '../../../const';
 import {
   SloganSpanContentStyle,
   SloganSpanHeadingStyle,
-} from '../../style/CommonStyles';
+} from '../../../styles/CommonStyles';
 
 const SloganHeading = () => {
   return (

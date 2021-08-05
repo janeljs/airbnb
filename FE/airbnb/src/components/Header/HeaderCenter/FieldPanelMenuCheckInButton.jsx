@@ -5,7 +5,7 @@ import {
   checkInDeleteButtonState,
   fieldPanelMenuActiveState,
 } from '../../../Recoil/HeaderFieldsetState';
-import { FieldPanel as S } from '../../style/styles';
+import { FieldPanel as S } from '../../../styles/styles';
 import CheckInDeleteButton from './HeaderPanel/CheckInDeleteButton';
 import CheckInPanelButton from './HeaderPanel/CheckInPanelButton';
 

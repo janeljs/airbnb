@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CALENDAR, FREE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
 import CalendarList from './Calendar/CalendarList';
-import { Calendar as S } from '../../../style/styles';
+import { Calendar as S } from '../../../../styles/styles';
 
 const CalendarPopup = ({ calendarPopup }) => {
   const [tabState, setTabState] = useState(true);

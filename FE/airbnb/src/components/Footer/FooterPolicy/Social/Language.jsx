@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FooterAnchor } from '../../../style/CommonStyles';
+import { FooterAnchor } from '../../../../styles/CommonStyles';
 import LanguageLogo from './LanguageLogo';
 import LanguageText from './LanguageText';
 

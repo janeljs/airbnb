@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { FieldPanel as S } from '../../style/styles';
+import { FieldPanel as S } from '../../../styles/styles';
 import {
   calendarPopupState,
   fieldPanelMenuActiveState,

@@ -47,11 +47,6 @@ export const searchButtonState = atom({
   default: false,
 });
 
-export const searchTextState = atom({
-  key: 'searchTextState',
-  default: false,
-});
-
 export const checkInField = atom({
   key: 'checkInField',
   default: {
@@ -247,5 +242,15 @@ export const guestPopupState = selector({
     const guestButton = get(guestButtonState);
     const guestPopupState = guestButton ? true : false;
     return guestPopupState;
+  },
+});
+
+export const searchTextState = selector({
+  key: 'searchTextState',
+  get: ({ get }) => {
+    const activeState = get(fieldPanelMenuActiveState);
+    const searchTextState =
+      activeState.filter((state) => state).length !== 0 ? true : false;
+    return searchTextState;
   },
 });

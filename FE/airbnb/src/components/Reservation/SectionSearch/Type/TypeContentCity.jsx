@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { nearbyRoomList } from '../../../../Recoil/ReservationState';
 import TypeCity from './City/TypeCity';
 import { v4 as uuidv4 } from 'uuid';
-import { getPerNight } from '../../../../util';
+import { getPerNight } from '../../../../utils/util';
 
 const TypeContentCity = () => {
   const roomList = useRecoilValue(nearbyRoomList);

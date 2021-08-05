@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { modalPrice } from '../../../Recoil/ReservationState';
-import { moneyComma, getPerNight } from '../../../util';
+import { moneyComma, getPerNight } from '../../../utils/util';
 
 const Price = () => {
   const searchData = JSON.parse(localStorage.getItem('search'));

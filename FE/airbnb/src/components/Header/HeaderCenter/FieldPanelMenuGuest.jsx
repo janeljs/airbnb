@@ -5,7 +5,7 @@ import {
   guestDeleteButtonState,
   guestPopupState,
 } from '../../../Recoil/HeaderFieldsetState';
-import { FieldPanel as S } from '../../style/styles';
+import { FieldPanel as S } from '../../../styles/styles';
 import GuestDeleteButton from './HeaderPanel/Guest/GuestDeleteButton';
 import GuestPopup from './HeaderPanel/Guest/GuestPopup';
 import PanelLast from './HeaderPanel/PanelLast';

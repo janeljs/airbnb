@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import StarLogo from '../../../../../svg/StarLogo';
-import { getRandom } from '../../../../../util';
+import { getRandom } from '../../../../../utils/util';
 
 const CityCardStarBig = ({ star }) => {
   const randomStar = getRandom(1, 5, false);

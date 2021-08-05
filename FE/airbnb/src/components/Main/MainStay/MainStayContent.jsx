@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SectionContentWrapper } from '../../style/CommonStyles';
+import { SectionContentWrapper } from '../../../styles/CommonStyles';
 import MainStaySection from './MainStaySection';
 
 const MainStayContent = () => {

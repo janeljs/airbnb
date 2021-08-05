@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SLOGAN_TARGET } from '../../../const';
-import { SloganTargetSpanStyle } from '../../style/CommonStyles';
+import { SloganTargetSpanStyle } from '../../../styles/CommonStyles';
 
 const SloganTarget = () => {
   return (

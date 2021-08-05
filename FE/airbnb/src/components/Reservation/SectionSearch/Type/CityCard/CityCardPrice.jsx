@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { moneyComma } from '../../../../../util';
+import { moneyComma } from '../../../../../utils/util';
 
 const CityCardPrice = ({ price, perNight }) => {
   const perNightPrice = moneyComma(price);

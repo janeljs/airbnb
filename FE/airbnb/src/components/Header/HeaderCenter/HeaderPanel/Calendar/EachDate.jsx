@@ -15,8 +15,8 @@ import {
   checkOutField,
   searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
-import { getDate } from '../../../../../util';
-import { setState } from '../../../../../util.ts';
+import { getDate } from '../../../../../utils/util';
+import { setState } from '../../../../../utils/util.ts';
 // import { calendarMonthTriggerState } from '../../../../../Recoil/CalendarState';
 
 const EachDate = ({ eachMonth, dateState }) => {

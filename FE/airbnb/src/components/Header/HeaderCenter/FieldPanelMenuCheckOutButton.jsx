@@ -1,7 +1,7 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import useClickPanelMenuButton from '../../../hooks/useClickPanelMenuButton';
 import { checkOutDeleteButtonState } from '../../../Recoil/HeaderFieldsetState';
-import { FieldPanel as S } from '../../style/styles';
+import { FieldPanel as S } from '../../../styles/styles';
 import CheckOutDeleteButton from './HeaderPanel/CheckOutDeleteButton';
 import CheckOutPanelButton from './HeaderPanel/CheckOutPanelButton';
 

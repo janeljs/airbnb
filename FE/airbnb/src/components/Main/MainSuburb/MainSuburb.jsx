@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import MainSuburbContent from './MainSuburbContent';
-import { SectionWrapper } from '../../style/CommonStyles';
+import { SectionWrapper } from '../../../styles/CommonStyles';
 
 const MainSuburb = () => {
   return (
