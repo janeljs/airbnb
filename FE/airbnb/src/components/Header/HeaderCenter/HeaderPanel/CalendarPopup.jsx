@@ -3,32 +3,35 @@ import styled from 'styled-components';
 import { CALENDAR, FREE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
 import CalendarList from './Calendar/CalendarList';
+import { Calendar as S } from '../../../style/styles';
 
-const CalendarPopup = () => {
+const CalendarPopup = ({ calendarPopup }) => {
   const [tabState, setTabState] = useState(true);
 
   return (
-    <CalendarSection>
-      <CalendarWrapper>
-        <CalendarTabsWrapper>
-          <CalendarTabsBox>
-            <CalendarTabsButton
-              {...{ setTabState }}
-              buttonName={CALENDAR}
-              selected={tabState}
-            />
-            <CalendarTabsButton
-              {...{ setTabState }}
-              buttonName={FREE}
-              selected={!tabState}
-            />
-          </CalendarTabsBox>
-        </CalendarTabsWrapper>
-        <CalendarListWrapper>
-          <CalendarList />
-        </CalendarListWrapper>
-      </CalendarWrapper>
-    </CalendarSection>
+    <S.CalendarPopup {...{ calendarPopup }}>
+      <CalendarSection>
+        <CalendarWrapper>
+          <CalendarTabsWrapper>
+            <CalendarTabsBox>
+              <CalendarTabsButton
+                {...{ setTabState }}
+                buttonName={CALENDAR}
+                selected={tabState}
+              />
+              <CalendarTabsButton
+                {...{ setTabState }}
+                buttonName={FREE}
+                selected={!tabState}
+              />
+            </CalendarTabsBox>
+          </CalendarTabsWrapper>
+          <CalendarListWrapper>
+            <CalendarList />
+          </CalendarListWrapper>
+        </CalendarWrapper>
+      </CalendarSection>
+    </S.CalendarPopup>
   );
 };
 

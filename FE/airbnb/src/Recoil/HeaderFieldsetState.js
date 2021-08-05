@@ -1,6 +1,13 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
-import { GUEST_PLACEHOLDER, INPUT_DATE_PLACEHOLDER } from '../const';
+import {
+  CHECK_IN,
+  CHECK_OUT,
+  GUEST,
+  GUEST_PLACEHOLDER,
+  INPUT_DATE_PLACEHOLDER,
+  LOCATION,
+} from '../const';
 
 export const headerFieldset = atom({
   key: 'headerFieldset',
@@ -20,21 +27,6 @@ export const headerFieldset = atom({
   },
 });
 
-export const nearbyPopupState = atom({
-  key: 'nearbyPopupState',
-  default: false,
-});
-
-export const calendarPopupState = atom({
-  key: 'calendarPopupState',
-  default: false,
-});
-
-export const guestPopupState = atom({
-  key: 'guestPopupState',
-  default: false,
-});
-
 export const registerPopupState = atom({
   key: 'registerPopupState',
   default: false,
@@ -52,25 +44,6 @@ export const reservationState = atom({
 
 export const searchButtonState = atom({
   key: 'searchButtonState',
-  default: false,
-});
-
-export const nearbyButtonState = atom({
-  key: 'nearbyButtonState',
-  default: false,
-});
-
-export const guestButtonState = atom({
-  key: 'guestButtonState',
-  default: false,
-});
-
-export const checkInButtonState = atom({
-  key: 'checkInButtonState',
-  default: false,
-});
-export const checkOutButtonState = atom({
-  key: 'checkOutButtonState',
   default: false,
 });
 
@@ -170,12 +143,12 @@ export const guestPopupTriggerState = atom({
   default: false,
 });
 
-export const checkInDeleteButton = atom({
-  key: 'checkInDeleteButton',
+export const checkInDeleteButtonState = atom({
+  key: 'checkInDeleteButtonState',
   default: false,
 });
-export const checkOutDeleteButton = atom({
-  key: 'checkOutDeleteButton',
+export const checkOutDeleteButtonState = atom({
+  key: 'checkOutDeleteButtonState',
   default: false,
 });
 
@@ -198,12 +171,81 @@ export const searchData = atom({
   },
 });
 
-export const guestDeleteButton = atom({
-  key: 'guestDeleteButton',
+export const guestDeleteButtonState = atom({
+  key: 'guestDeleteButtonState',
   default: false,
 });
 
 export const nearbyField = atom({
   key: 'nearbyField',
   default: ``,
+});
+
+export const fieldPanelMenuActiveState = atom({
+  key: 'fieldPanelMenuActiveState',
+  default: [false, false, false, false],
+});
+
+export const nearbyButtonState = selector({
+  key: 'nearbyButtonState',
+  get: ({ get }) => {
+    const activeState = get(fieldPanelMenuActiveState);
+    const nearbyButtonState = activeState[0];
+    return nearbyButtonState;
+  },
+});
+
+export const nearbyPopupState = selector({
+  key: 'nearbyPopupState',
+  get: ({ get }) => {
+    const nearbyButton = get(nearbyButtonState);
+    const nearbyPopupState = nearbyButton ? true : false;
+    return nearbyPopupState;
+  },
+});
+
+export const checkInButtonState = selector({
+  key: 'checkInButtonState',
+  get: ({ get }) => {
+    const activeState = get(fieldPanelMenuActiveState);
+    const checkInButtonState = activeState[1];
+    return checkInButtonState;
+  },
+});
+
+export const checkOutButtonState = selector({
+  key: 'checkOutButtonState',
+  get: ({ get }) => {
+    const activeState = get(fieldPanelMenuActiveState);
+    const checkOutButtonState = activeState[2];
+    return checkOutButtonState;
+  },
+});
+
+export const calendarPopupState = selector({
+  key: 'calendarPopupState',
+  get: ({ get }) => {
+    const checkInButton = get(checkInButtonState);
+    const checkOutButton = get(checkOutButtonState);
+    const calendarPopupState = checkInButton || checkOutButton ? true : false;
+    return calendarPopupState;
+  },
+});
+
+export const guestButtonState = selector({
+  key: 'guestButtonState',
+  get: ({ get }) => {
+    const activeState = get(fieldPanelMenuActiveState);
+    const guestButtonState = activeState[3];
+    return guestButtonState;
+  },
+});
+
+export const guestPopupState = selector({
+  key: 'guestPopupState',
+  get: ({ get }) => {
+    const guestButton = get(guestButtonState);
+    const guestPopupState = guestButton ? true : false;
+    return guestPopupState;
+  },
 });

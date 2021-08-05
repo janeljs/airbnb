@@ -2,19 +2,17 @@ import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import {
-  nearbyButtonState,
   nearbyField,
+  nearbyPopupState,
   searchData,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelMenuLabel = ({ name, placeholder }) => {
-  const nearbyButton = useRecoilValue(nearbyButtonState);
+  const nearbyPopup = useRecoilValue(nearbyPopupState);
   const [nearbyValue, setNearbyValue] = useRecoilState(nearbyField);
   const [search, setSearch] = useRecoilState(searchData);
 
-  const handleOnChange = (e) => {
-    setNearbyValue(e.target.value);
-  };
+  const handleOnChange = (e) => setNearbyValue(e.target.value);
 
   useEffect(() => {
     setSearch({
@@ -25,10 +23,10 @@ const PanelMenuLabel = ({ name, placeholder }) => {
   }, [nearbyValue]);
 
   return (
-    <PanelMenuLabelStyle {...{ nearbyButton }}>
+    <PanelMenuLabelStyle {...{ nearbyPopup }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{name}</PanelMenuDiv>
-        {search.location && !nearbyButton ? (
+        {search.location && !nearbyPopup ? (
           <div>{search.location}</div>
         ) : (
           <PanelMenuInput
@@ -71,7 +69,7 @@ const PanelMenuLabelStyle = styled.label`
     top: 50%;
     z-index: 0;
     border-left: 0px;
-    border-color: ${({ nearbyButton }) => (nearbyButton ? `#f7f7f7` : `#fff`)};
+    border-color: ${({ nearbyPopup }) => (nearbyPopup ? `#f7f7f7` : `#fff`)};
   }
 
   ::after {
@@ -91,8 +89,8 @@ const PanelMenuLabelStyle = styled.label`
     background-color: #ebebeb;
   }
 
-  ${({ nearbyButton }) =>
-    nearbyButton &&
+  ${({ nearbyPopup }) =>
+    nearbyPopup &&
     `
   ::before {
     display: block;

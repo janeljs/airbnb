@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  guestDeleteButton,
+  guestDeleteButtonState,
   guestField,
   searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
@@ -16,7 +16,7 @@ import {
 const MinusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
-  const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
+  const setIsGuestDeleteButton = useSetRecoilState(guestDeleteButtonState);
   const modal = useRecoilValue(modalState);
   const [modalGuestCount, setModalGuestCount] =
     useRecoilState(modalGuestFieldState);
@@ -75,7 +75,7 @@ const MinusButton = ({ count, id }) => {
     const state = modal ? modalGuestCount : guestCount;
 
     state.value.filter((guest) => guest.count === 0).length === 3 &&
-      setGuestDeleteButton(false);
+      setIsGuestDeleteButton(false);
   };
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const MinusButton = ({ count, id }) => {
 const PlusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
-  const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
+  const setIsGuestDeleteButton = useSetRecoilState(guestDeleteButtonState);
   const [search, setSearch] = useRecoilState(searchData);
   const modal = useRecoilValue(modalState);
   const [modalGuestCount, setModalGuestCount] =
@@ -112,7 +112,7 @@ const PlusButton = ({ count, id }) => {
 
     const updateCallbackFunc = modal ? setModalGuestCount : setGuestCount;
 
-    setGuestDeleteButton(true);
+    setIsGuestDeleteButton(true);
 
     updateCallbackFunc({
       ...state,

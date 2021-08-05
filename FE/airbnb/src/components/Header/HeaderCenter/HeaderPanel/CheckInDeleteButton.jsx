@@ -2,20 +2,20 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { INPUT_DATE_PLACEHOLDER } from '../../../../const';
 import {
-  checkInDeleteButton,
+  checkInDeleteButtonState,
   checkInField,
   checkOutField,
 } from '../../../../Recoil/HeaderFieldsetState';
 import DeleteButtonIcon from '../../../../svg/DeleteButtonIcon';
 
 const CheckInDeleteButton = () => {
-  const setCheckInDelete = useSetRecoilState(checkInDeleteButton);
+  const setCheckInDeleteButton = useSetRecoilState(checkInDeleteButtonState);
   const [checkOutFieldState, setCheckOutField] = useRecoilState(checkOutField);
   const [checkInFieldState, setCheckInField] = useRecoilState(checkInField);
 
   const handleClickDeleteButton = (e) => {
     e.stopPropagation();
-    setCheckInDelete(false);
+    setCheckInDeleteButton(false);
 
     if (checkInFieldState.state && checkOutFieldState.state) {
       setCheckInField({

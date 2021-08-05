@@ -11,7 +11,7 @@ import {
   checkInButtonState,
   checkInField,
   checkOutButtonState,
-  checkOutDeleteButton,
+  checkOutDeleteButtonState,
   checkOutField,
   searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
@@ -31,7 +31,7 @@ const EachDate = ({ eachMonth, dateState }) => {
   const setCheckInButton = useSetRecoilState(checkInButtonState);
   const [checkOutButton, setCheckOutButton] =
     useRecoilState(checkOutButtonState);
-  const setCheckOutDelete = useSetRecoilState(checkOutDeleteButton);
+  const setCheckOutDeleteButton = useSetRecoilState(checkOutDeleteButtonState);
   const [search, setSearch] = useRecoilState(searchData);
 
   // 컴포넌트 날짜
@@ -83,12 +83,12 @@ const EachDate = ({ eachMonth, dateState }) => {
       resetDate(setCheckOutDate);
       setCheckInButton(false);
       setCheckOutButton(true);
-      setCheckOutDelete(false);
+      setCheckOutDeleteButton(false);
       return;
     }
     if (checkOutDate.state) {
       checkSelected();
-      setCheckOutDelete(true);
+      setCheckOutDeleteButton(true);
     }
     if (checkInDate.state) return;
     activeDate(setCheckInDate);
@@ -105,7 +105,7 @@ const EachDate = ({ eachMonth, dateState }) => {
       return;
     }
     activeDate(setCheckOutDate);
-    setCheckOutDelete(true);
+    setCheckOutDeleteButton(true);
   };
 
   const checkPanelTab = () => {
@@ -122,12 +122,12 @@ const EachDate = ({ eachMonth, dateState }) => {
     if (componentDate < selectedCheckIn) {
       activeDate(setCheckInDate);
       resetDate(setCheckOutDate);
-      setCheckOutDelete(false);
+      setCheckOutDeleteButton(false);
       return;
     }
     if (componentDate > selectedCheckIn) {
       activeDate(setCheckOutDate);
-      setCheckOutDelete(true);
+      setCheckOutDeleteButton(true);
       checkSelected();
       return;
     }
